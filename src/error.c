@@ -26,16 +26,13 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
+/* $XFree86: xc/lib/ICE/error.c,v 1.6 2001/12/14 19:53:35 dawes Exp $ */
 
 #include <X11/ICE/ICElib.h>
 #include "ICElibint.h"
 #include <stdio.h>
 
 #include <errno.h>
-
-#ifdef X_NOT_STDC_ENV
-extern int errno;
-#endif
 
 
 void
@@ -428,7 +425,7 @@ IcePointer	values;
     fprintf (stderr, "ICE error:  Offending minor opcode    = %d (%s)\n",
 	offendingMinorOpcode, str);
 
-    fprintf (stderr, "            Offending sequence number = %d\n",
+    fprintf (stderr, "            Offending sequence number = %lu\n",
 	offendingSequence);
 
     switch (errorClass)
@@ -609,8 +606,8 @@ IceConn iceConn;
 
 {
     fprintf (stderr,
-	"ICE default IO error handler doing an exit(), pid = %d, errno = %d\n",
-	getpid(), errno);
+	"ICE default IO error handler doing an exit(), pid = %ld, errno = %d\n",
+	(long)getpid(), errno);
 
     exit (1);
 }

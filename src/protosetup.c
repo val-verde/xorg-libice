@@ -26,6 +26,7 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
+/* $XFree86: xc/lib/ICE/protosetup.c,v 1.3 2001/12/14 19:53:36 dawes Exp $ */
 
 #include <X11/ICE/ICElib.h>
 #include "ICElibint.h"
@@ -58,7 +59,7 @@ char 	   *errorStringRet;
     unsigned long	setup_sequence;
     IceReplyWaitInfo 	replyWait;
     _IceReply		reply;
-    IcePoVersionRec	*versionRec;
+    IcePoVersionRec	*versionRec = NULL;
     int			authCount;
     int			*authIndices;
 

@@ -26,10 +26,12 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
+/* $XFree86: xc/lib/ICE/process.c,v 3.8 2001/12/14 19:53:36 dawes Exp $ */
 
 #include <X11/ICE/ICElib.h>
 #include "ICElibint.h"
 
+#include <stdio.h> /* sprintf */
 
 /*
  * Check for bad length
@@ -58,7 +60,11 @@ Author: Ralph Mor, X Consortium
        return (0); \
     }
 
-
+#define BAIL_STRING(_iceConn, _opcode, _pStart) {\
+    _IceErrorBadLength (_iceConn, 0, _opcode, IceFatalToConnection);\
+    IceDisposeCompleteMessage (_iceConn, _pStart);\
+    return (0);\
+}
 
 /*
  * IceProcessMessages:
@@ -194,7 +200,7 @@ Bool		 *replyReadyRet;
 	    {
 		iceConn->swap =
 	            (((*(char *) &endian) && byteOrder == IceMSBfirst) ||
-	             !(*(char *) &endian) && byteOrder == IceLSBfirst);
+	             (!(*(char *) &endian) && byteOrder == IceLSBfirst));
 
 		iceConn->waiting_for_byteorder = 0;
 	    }
@@ -534,7 +540,7 @@ Bool		 swap;
 IceReplyWaitInfo *replyWait;
 
 {
-    int		invokeHandler;
+    int		invokeHandler = 0;
     Bool	errorReturned = False;
     iceErrorMsg *message;
     char 	*pData, *pStart;
@@ -761,8 +767,8 @@ IceReplyWaitInfo *replyWait;
 	    if (iceConn->connect_to_you &&
 		iceConn->connect_to_you->auth_active)
 	    {
-		authProc = _IcePoAuthProcs[
-		    iceConn->connect_to_you->my_auth_index];
+		authProc = _IcePoAuthProcs[(int)
+		    (iceConn->connect_to_you->my_auth_index)];
 
 		(*authProc) (iceConn, &iceConn->connect_to_you->my_auth_state,
 		    True /* clean up */, False /* swap */,
@@ -774,8 +780,8 @@ IceReplyWaitInfo *replyWait;
 		_IcePoProtocol *protocol = _IceProtocols[
 		    iceConn->protosetup_to_you->my_opcode - 1].orig_client;
 
-		authProc = protocol->auth_procs[iceConn->
-		    protosetup_to_you->my_auth_index];
+		authProc = protocol->auth_procs[(int)(iceConn->
+		    protosetup_to_you->my_auth_index)];
 
 		(*authProc) (iceConn,
 		    &iceConn->protosetup_to_you->my_auth_state,
@@ -799,7 +805,7 @@ IceReplyWaitInfo *replyWait;
 
 
 
-static
+static int
 ProcessConnectionSetup (iceConn, length, swap)
 
 IceConn		iceConn;
@@ -813,8 +819,8 @@ Bool		swap;
     int  hisMajorVersion, hisMinorVersion;
     int	 myAuthCount, hisAuthCount;
     int	 found, i, j;
-    char *myAuthName, **hisAuthNames;
-    char *pData, *pStart;
+    char *myAuthName, **hisAuthNames = NULL;
+    char *pData, *pStart, *pEnd;
     char *vendor = NULL;
     char *release = NULL;
     int myAuthIndex = 0;
@@ -838,10 +844,18 @@ Bool		swap;
     }
 
     pData = pStart;
-
-    SKIP_STRING (pData, swap);				       /* vendor */
-    SKIP_STRING (pData, swap);				       /* release */
-    SKIP_LISTOF_STRING (pData, swap, (int) message->authCount);/* auth names */
+    pEnd = pStart + (length << 3);
+    
+    SKIP_STRING (pData, swap, pEnd, 
+		 BAIL_STRING(iceConn, ICE_ConnectionSetup,
+			     pStart));			       /* vendor */
+    SKIP_STRING (pData, swap, pEnd, 
+		 BAIL_STRING(iceConn, ICE_ConnectionSetup,
+			    pStart));	        	       /* release */
+    SKIP_LISTOF_STRING (pData, swap, (int) message->authCount, pEnd, 
+			BAIL_STRING(iceConn, ICE_ConnectionSetup,
+				   pStart));		       /* auth names */
+    
     pData += (message->versionCount * 4);		       /* versions */
 
     CHECK_COMPLETE_SIZE (iceConn, ICE_ConnectionSetup,
@@ -1064,7 +1078,7 @@ IceReplyWaitInfo	*replyWait;
     IcePoAuthProc	authProc;
     IcePoAuthStatus	status;
     IcePointer 		authState;
-    int			realAuthIndex;
+    int			realAuthIndex = 0;
 
     CHECK_AT_LEAST_SIZE (iceConn, ICE_AuthRequired,
 	length, SIZEOF (iceAuthRequiredMsg),
@@ -1241,7 +1255,7 @@ IceReplyWaitInfo	*replyWait;
 
 
 
-static
+static int
 ProcessAuthReply (iceConn, length, swap)
 
 IceConn		iceConn;
@@ -1282,8 +1296,8 @@ Bool		swap;
 
     if (iceConn->connect_to_me)
     {
-	IcePaAuthProc authProc = _IcePaAuthProcs[
-	    iceConn->connect_to_me->my_auth_index];
+	IcePaAuthProc authProc = _IcePaAuthProcs[(int)
+	    (iceConn->connect_to_me->my_auth_index)];
 	IcePaAuthStatus status =
 	    (*authProc) (iceConn, &iceConn->connect_to_me->my_auth_state, swap,
 	    replyDataLen, replyData, &authDataLen, &authData, &errorString);
@@ -1354,8 +1368,8 @@ Bool		swap;
     {
 	_IcePaProtocol *myProtocol = _IceProtocols[iceConn->protosetup_to_me->
 	    my_opcode - 1].accept_client;
-	IcePaAuthProc authProc = myProtocol->auth_procs[
-	    iceConn->protosetup_to_me->my_auth_index];
+	IcePaAuthProc authProc = myProtocol->auth_procs[(int)
+	    (iceConn->protosetup_to_me->my_auth_index)];
 	IcePaAuthStatus status =
 	    (*authProc) (iceConn, &iceConn->protosetup_to_me->my_auth_state,
 	    swap, replyDataLen, replyData,
@@ -1580,8 +1594,8 @@ IceReplyWaitInfo	*replyWait;
 
     if (iceConn->connect_to_you)
     {
-	authProc = _IcePoAuthProcs[
-	    iceConn->connect_to_you->my_auth_index];
+	authProc = _IcePoAuthProcs[(int)
+	    (iceConn->connect_to_you->my_auth_index)];
 
 	authState = &iceConn->connect_to_you->my_auth_state;
     }
@@ -1590,8 +1604,8 @@ IceReplyWaitInfo	*replyWait;
 	_IcePoProtocol *myProtocol =
 	  _IceProtocols[iceConn->protosetup_to_you->my_opcode - 1].orig_client;
 
-	authProc = myProtocol->auth_procs[
-	    iceConn->protosetup_to_you->my_auth_index];
+	authProc = myProtocol->auth_procs[(int)
+	    (iceConn->protosetup_to_you->my_auth_index)];
 
 	authState = &iceConn->protosetup_to_you->my_auth_state;
     }
@@ -1620,7 +1634,7 @@ IceReplyWaitInfo	*replyWait;
     }
     else if (status == IcePoAuthRejected || status == IcePoAuthFailed)
     {
-	char *prefix, *returnErrorString;
+	char *prefix = NULL, *returnErrorString;
 
 	if (status == IcePoAuthRejected)
 	{
@@ -1680,7 +1694,7 @@ IceReplyWaitInfo 	*replyWait;
 
 {
     iceConnectionReplyMsg 	*message;
-    char 			*pData, *pStart;
+    char 			*pData, *pStart, *pEnd;
     Bool			replyReady;
 
     CHECK_AT_LEAST_SIZE (iceConn, ICE_ConnectionReply,
@@ -1696,9 +1710,14 @@ IceReplyWaitInfo 	*replyWait;
     }
 
     pData = pStart;
+    pEnd = pStart + (length << 3);
 
-    SKIP_STRING (pData, swap);				     /* vendor */
-    SKIP_STRING (pData, swap);				     /* release */
+    SKIP_STRING (pData, swap, pEnd,
+		 BAIL_STRING (iceConn, ICE_ConnectionReply,
+			      pStart));		    	     /* vendor */
+    SKIP_STRING (pData, swap, pEnd,
+		 BAIL_STRING (iceConn, ICE_ConnectionReply,
+			      pStart));			     /* release */
 
     CHECK_COMPLETE_SIZE (iceConn, ICE_ConnectionReply,
 	length, pData - pStart + SIZEOF (iceConnectionReplyMsg),
@@ -1714,8 +1733,8 @@ IceReplyWaitInfo 	*replyWait;
 	     * Tell the authentication procedure to clean up.
 	     */
 
-	    IcePoAuthProc authProc = _IcePoAuthProcs[
-		iceConn->connect_to_you->my_auth_index];
+	    IcePoAuthProc authProc = _IcePoAuthProcs[(int)
+		(iceConn->connect_to_you->my_auth_index)];
 
 	    (*authProc) (iceConn, &iceConn->connect_to_you->my_auth_state,
 		True /* clean up */, False /* swap */,
@@ -1766,7 +1785,7 @@ IceReplyWaitInfo 	*replyWait;
 
 
 
-static
+static int
 ProcessProtocolSetup (iceConn, length, swap)
 
 IceConn		iceConn;
@@ -1782,9 +1801,9 @@ Bool		swap;
     int	 	      	myAuthCount, hisAuthCount;
     int  	      	myOpcode, hisOpcode;
     int	 	      	found, i, j;
-    char	      	*myAuthName, **hisAuthNames;
+    char	      	*myAuthName, **hisAuthNames = NULL;
     char 	      	*protocolName;
-    char 		*pData, *pStart;
+    char 		*pData, *pStart, *pEnd;
     char 	      	*vendor = NULL;
     char 	      	*release = NULL;
     int  	      	accept_setup_now = 0;
@@ -1819,11 +1838,20 @@ Bool		swap;
     }
 
     pData = pStart;
+    pEnd = pStart + (length << 3);
 
-    SKIP_STRING (pData, swap);				       /* proto name */
-    SKIP_STRING (pData, swap);				       /* vendor */
-    SKIP_STRING (pData, swap);				       /* release */
-    SKIP_LISTOF_STRING (pData, swap, (int) message->authCount);/* auth names */
+    SKIP_STRING (pData, swap, pEnd,
+		 BAIL_STRING(iceConn, ICE_ProtocolSetup, 
+			     pStart));			       /* proto name */
+    SKIP_STRING (pData, swap, pEnd,
+		 BAIL_STRING(iceConn, ICE_ProtocolSetup, 
+			     pStart));			       /* vendor */
+    SKIP_STRING (pData, swap, pEnd,
+		 BAIL_STRING(iceConn, ICE_ProtocolSetup, 
+			     pStart));			       /* release */
+    SKIP_LISTOF_STRING (pData, swap, (int) message->authCount, pEnd,
+			BAIL_STRING(iceConn, ICE_ProtocolSetup, 
+				    pStart));		       /* auth names */
     pData += (message->versionCount * 4);		       /* versions */
 
     CHECK_COMPLETE_SIZE (iceConn, ICE_ProtocolSetup,
@@ -2165,7 +2193,7 @@ IceReplyWaitInfo 	*replyWait;
 
 {
     iceProtocolReplyMsg *message;
-    char		*pData, *pStart;
+    char		*pData, *pStart, *pEnd;
     Bool		replyReady;
 
     CHECK_AT_LEAST_SIZE (iceConn, ICE_ProtocolReply,
@@ -2181,9 +2209,14 @@ IceReplyWaitInfo 	*replyWait;
     }
 
     pData = pStart;
+    pEnd = pStart + (length << 3);
 
-    SKIP_STRING (pData, swap);				     /* vendor */
-    SKIP_STRING (pData, swap);				     /* release */
+    SKIP_STRING (pData, swap, pEnd,
+		 BAIL_STRING(iceConn, ICE_ProtocolReply,
+			     pStart));			     /* vendor */
+    SKIP_STRING (pData, swap, pEnd,
+		 BAIL_STRING(iceConn, ICE_ProtocolReply,
+			     pStart));			     /* release */
 
     CHECK_COMPLETE_SIZE (iceConn, ICE_ProtocolReply,
 	length, pData - pStart + SIZEOF (iceProtocolReplyMsg),
@@ -2202,8 +2235,8 @@ IceReplyWaitInfo 	*replyWait;
 	    _IcePoProtocol *myProtocol = _IceProtocols[
 		iceConn->protosetup_to_you->my_opcode - 1].orig_client;
 
-	    IcePoAuthProc authProc = myProtocol->auth_procs[
-		iceConn->protosetup_to_you->my_auth_index];
+	    IcePoAuthProc authProc = myProtocol->auth_procs[(int)
+		(iceConn->protosetup_to_you->my_auth_index)];
 
 #ifdef SVR4
 
@@ -2263,7 +2296,7 @@ IceReplyWaitInfo 	*replyWait;
 
 
 
-static
+static int
 ProcessPing (iceConn, length)
 
 IceConn 	iceConn;
@@ -2280,7 +2313,7 @@ unsigned long	length;
 
 
 
-static
+static int
 ProcessPingReply (iceConn, length)
 
 IceConn 	iceConn;
@@ -2310,7 +2343,7 @@ unsigned long	length;
 
 
 
-static
+static int
 ProcessWantToClose (iceConn, length, connectionClosedRet)
 
 IceConn 	iceConn;
@@ -2370,7 +2403,7 @@ Bool		*connectionClosedRet;
 
 
 
-static
+static int
 ProcessNoClose (iceConn, length)
 
 IceConn 	iceConn;
@@ -2488,3 +2521,4 @@ Bool		 *connectionClosedRet;
     if (replyWait)
 	*replyReadyRet = replyReady;
 }
+

@@ -1,5 +1,5 @@
 /* $Xorg: authutil.c,v 1.5 2001/02/09 02:03:26 xorgcvs Exp $ */
-/* $XdotOrg: xc/lib/ICE/authutil.c,v 1.1.4.2.4.1 2004/03/04 17:46:35 eich Exp $ */
+/* $XdotOrg: xc/lib/ICE/authutil.c,v 1.2 2004/04/23 18:43:22 eich Exp $ */
 /******************************************************************************
 
 

@@ -26,7 +26,7 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
-/* $XFree86: authutil.c,v 3.9 2002/05/31 18:45:41 dawes Exp $ */
+/* $XFree86: xc/lib/ICE/authutil.c,v 3.10 2003/11/26 21:48:18 herrb Exp $ */
 
 #include <X11/ICE/ICElib.h>
 #include "ICElibint.h"

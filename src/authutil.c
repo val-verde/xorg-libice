@@ -1,4 +1,5 @@
 /* $Xorg: authutil.c,v 1.5 2001/02/09 02:03:26 xorgcvs Exp $ */
+/* $XdotOrg: xc/lib/ICE/authutil.c,v 1.1.4.2.4.1 2004/03/04 17:46:35 eich Exp $ */
 /******************************************************************************
 
 
@@ -26,7 +27,7 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
-/* $XFree86: xc/lib/ICE/authutil.c,v 3.9 2002/05/31 18:45:41 dawes Exp $ */
+/* $XFree86: authutil.c,v 3.9 2002/05/31 18:45:41 dawes Exp $ */
 
 #include <X11/ICE/ICElib.h>
 #include "ICElibint.h"
@@ -418,25 +419,21 @@ char	**stringp;
     if (!read_short (file, &len))
 	return (0);
 
-    if (len == 0)
-    {
-	data = 0;
-    }
-    else
-    {
-    	data = malloc ((unsigned) len + 1);
-
-    	if (!data)
+    data = malloc ((unsigned) len + 1);
+    
+    if (!data)
 	    return (0);
-
-    	if (fread (data, (int) sizeof (char), (int) len, file) != len)
+    
+    if (len != 0) 
+    {
+	if (fread (data, (int) sizeof (char), (int) len, file) != len)
 	{
 	    free (data);
 	    return (0);
-    	}
-
-	data[len] = '\0';
+	}
+	
     }
+    data[len] = '\0';
 
     *stringp = data;
 

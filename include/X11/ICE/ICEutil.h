@@ -26,7 +26,7 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
-/* $XFree86$ */
+/* $XFree86: xc/lib/ICE/ICEutil.h,v 1.5 2003/11/17 22:20:05 dawes Exp $ */
 
 #ifndef _ICEUTIL_H_
 #define _ICEUTIL_H_

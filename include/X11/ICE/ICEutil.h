@@ -26,12 +26,17 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
+/* $XFree86: xc/lib/ICE/ICEutil.h,v 1.4 2001/12/20 19:40:59 tsi Exp $ */
 
 #ifndef _ICEUTIL_H_
 #define _ICEUTIL_H_
 
+#include <X11/Xfuncproto.h>
+
 #include <stdio.h>
 #include <X11/Xlib.h>
+
+_XFUNCPROTOBEGIN
 
 /*
  * Data structure for entry in ICE authority file
@@ -134,5 +139,7 @@ extern void IceSetPaAuthData (
     IceAuthDataEntry *	/* entries */
 #endif
 );
+
+_XFUNCPROTOEND
 
 #endif /* _ICEUTIL_H_ */

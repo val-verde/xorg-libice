@@ -26,6 +26,7 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
+/* $XFree86: xc/lib/ICE/connect.c,v 3.10 2002/12/02 21:50:29 tsi Exp $ */
 
 #include <X11/ICE/ICElib.h>
 #include "ICElibint.h"
@@ -34,23 +35,7 @@ Author: Ralph Mor, X Consortium
 
 static XtransConnInfo ConnectToPeer();
 
-#ifndef X_NOT_STDC_ENV
 #define Strstr strstr
-#else
-static char *Strstr(s1, s2)
-    char *s1, *s2;
-{
-    int n1, n2;
-
-    n1 = strlen(s1);
-    n2 = strlen(s2);
-    for ( ; n1 >= n2; s1++, n1--) {
-	if (!strncmp(s1, s2, n2))
-	    return s1;
-    }	
-    return NULL;
-}
-#endif
 
 IceConn
 IceOpenConnection (networkIdsList, context, mustAuthenticate, majorOpcodeCheck,
@@ -220,7 +205,7 @@ char 	   *errorStringRet;
     iceConn->inbufmax = iceConn->inbuf + ICE_INBUFSIZE;
 
     if ((iceConn->outbuf = iceConn->outbufptr =
-	(char *) malloc (ICE_OUTBUFSIZE)) == NULL)
+	(char *) calloc (1, ICE_OUTBUFSIZE)) == NULL)
     {
 	_IceFreeConnection (iceConn);
 	strncpy (errorStringRet, "Can't malloc", errorLength);
@@ -473,6 +458,7 @@ char **actualConnectionRet;
     int  madeConnection = 0;
     int  len, retry;
     int  connect_stat;
+    int  address_size;
     XtransConnInfo trans_conn = NULL;
 
     *actualConnectionRet = NULL;
@@ -481,8 +467,16 @@ char **actualConnectionRet;
     len = strlen (networkIdsList);
     endptr = networkIdsList + len;
 
-    if (len < sizeof addrbuf) address = addrbuf;
-    else address = malloc (len + 1);
+    if (len < sizeof addrbuf)
+    {
+       address = addrbuf;
+       address_size = 256;
+    }
+    else
+    {
+       address = malloc (len + 1);
+       address_size = len;
+    }    
 
     while (ptr < endptr && !madeConnection)
     {
@@ -490,6 +484,8 @@ char **actualConnectionRet;
 	    delim = endptr;
 
 	len = delim - ptr;
+	if (len > address_size - 1)
+	    len = address_size - 1;
 	strncpy (address, ptr, len);
 	address[len] = '\0';
 

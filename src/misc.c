@@ -26,6 +26,7 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
+/* $XFree86: xc/lib/ICE/misc.c,v 1.4 2001/12/14 19:53:36 dawes Exp $ */
 
 #ifdef WIN32
 #define _WILLWINSOCK_
@@ -69,8 +70,9 @@ unsigned long	size;
  * Output/Input buffer functions
  */
 
+int
 IceFlush (iceConn)
-
+     
 IceConn iceConn;
 
 {

@@ -26,18 +26,14 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
+/* $XFree86: xc/lib/ICE/iceauth.c,v 3.6 2002/05/31 18:45:41 dawes Exp $ */
 
 #include <X11/ICE/ICElib.h>
 #include "ICElibint.h"
 #include <X11/ICE/ICEutil.h>
 
-#ifdef X_NOT_STDC_ENV
-#define Time_t long
-extern Time_t time ();
-#else
 #include <time.h>
 #define Time_t time_t
-#endif
 
 static int binaryEqual ();
 
@@ -73,8 +69,9 @@ int len;
     }
 #else
     {
+#ifndef __UNIXOS2__
 	long    time ();
-
+#endif
 	ldata[0] = time ((long *) 0);
 	ldata[1] = getpid ();
     }

@@ -26,11 +26,16 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
+/* $XFree86: xc/lib/ICE/ICEmsg.h,v 1.4 2001/12/20 19:40:59 tsi Exp $ */
 
 #ifndef _ICEMSG_H_
 #define _ICEMSG_H_
 
+#include <X11/Xfuncproto.h>
+
 #include <X11/ICE/ICEconn.h>
+
+_XFUNCPROTOBEGIN
 
 /*
  * Function prototypes for internal ICElib functions
@@ -298,5 +303,7 @@ extern void _IceErrorBadValue (
     char _dummy[7]; \
     _IceRead (_iceConn, (unsigned long) (_bytes), _dummy); \
 }
+
+_XFUNCPROTOEND
 
 #endif /* _ICEMSG_H_ */

@@ -26,6 +26,7 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
+/* $XFree86: xc/lib/ICE/ICElibint.h,v 1.6 2001/12/14 19:53:35 dawes Exp $ */
 
 #ifndef _ICELIBINT_H_
 #define _ICELIBINT_H_
@@ -37,15 +38,8 @@ Author: Ralph Mor, X Consortium
 #include <X11/ICE/ICEconn.h>
 #include <X11/ICE/ICEmsg.h>
 
-#ifndef X_NOT_STDC_ENV
 #include <stdlib.h>
-#else
-char *malloc();
-#endif
-
-#ifndef NULL
-#define NULL 0
-#endif
+#include <stddef.h>
 
 
 /*
@@ -287,20 +281,21 @@ typedef struct {
 }
 
 
-#define SKIP_STRING(_pBuf, _swap) \
+#define SKIP_STRING(_pBuf, _swap, _end, _bail) \
 { \
     CARD16 _len; \
     EXTRACT_CARD16 (_pBuf, _swap, _len); \
-    _pBuf += _len; \
-    if (PAD32 (2 + _len)) \
-        _pBuf += PAD32 (2 + _len); \
-}
+    _pBuf += _len + PAD32(2+_len); \
+    if (_pBuf > _end) { \
+	_bail; \
+    } \
+} 
 
-#define SKIP_LISTOF_STRING(_pBuf, _swap, _count) \
+#define SKIP_LISTOF_STRING(_pBuf, _swap, _count, _end, _bail) \
 { \
     int _i; \
     for (_i = 0; _i < _count; _i++) \
-        SKIP_STRING (_pBuf, _swap); \
+        SKIP_STRING (_pBuf, _swap, _end, _bail); \
 }
 
 

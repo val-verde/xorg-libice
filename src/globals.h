@@ -26,6 +26,7 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
+/* $XFree86: xc/lib/ICE/globals.h,v 1.5 2002/05/31 18:45:41 dawes Exp $ */
 
 extern void _IceDefaultErrorHandler ();
 extern void _IceDefaultIOErrorHandler ();
@@ -35,11 +36,17 @@ extern IcePaAuthStatus _IcePaMagicCookie1Proc ();
 
 extern void _IceProcessCoreMessage ();
 
+#ifndef __UNIXOS2__
 IceConn     	_IceConnectionObjs[256];
 char	    	*_IceConnectionStrings[256];
+_IceProtocol 	_IceProtocols[255];
+#else
+IceConn     	_IceConnectionObjs[256] = {0};
+char	    	*_IceConnectionStrings[256] = {0};
+_IceProtocol 	_IceProtocols[255] = {0};
+#endif
 int     	_IceConnectionCount = 0;
 
-_IceProtocol 	_IceProtocols[255];
 int         	_IceLastMajorOpcode = 0;
 
 int		_IceAuthCount = 1;

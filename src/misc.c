@@ -614,10 +614,14 @@ int 	myOpcode;
 
 
 char *
-_IceGetPeerName (iceConn)
-
-IceConn iceConn;
-
+IceGetPeerName (IceConn iceConn)
 {
     return (_IceTransGetPeerNetworkId (iceConn->trans_conn));
+}
+
+
+char *
+_IceGetPeerName (IceConn iceConn)
+{
+    return (IceGetPeerName(iceConn));
 }

@@ -26,7 +26,7 @@ in this Software without prior written authorization from The Open Group.
 
 Author: Ralph Mor, X Consortium
 ******************************************************************************/
-/* $XFree86: xc/lib/ICE/globals.h,v 1.5 2002/05/31 18:45:41 dawes Exp $ */
+/* $XFree86$ */
 
 extern void _IceDefaultErrorHandler ();
 extern void _IceDefaultIOErrorHandler ();

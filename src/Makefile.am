@@ -37,4 +37,3 @@ iceinclude_HEADERS=\
 	$(top_srcdir)/include/X11/ICE/ICEmsg.h \
 	$(top_srcdir)/include/X11/ICE/ICEproto.h \
 	$(top_srcdir)/include/X11/ICE/ICEutil.h
-

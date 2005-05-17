@@ -31,6 +31,9 @@ Author: Ralph Mor, X Consortium
 #ifdef WIN32
 #define _WILLWINSOCK_
 #endif
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 #include <X11/ICE/ICElib.h>
 #include "ICElibint.h"
 #include <X11/Xtrans.h>

@@ -27,8 +27,9 @@ PKG_CHECK_MODULES(XTRANS, xtrans)
 AC_SUBST(XTRANS_CFLAGS)
 AC_SUBST(XTRANS_LIBS)
 
-AC_DEFINE(LOCALCONN, 1, [Support local connections])
-AC_DEFINE(UNIXCONN, 1, [Support UNIX socket connections])
+# Transport selection macro from xtrans.m4
+XTRANS_CONNECTION_FLAGS
+AC_DEFINE(ICE_t, 1, [Xtrans transport type])
 
 # Checks for libraries.
 

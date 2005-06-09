@@ -30,4 +30,4 @@
 #define TRANS_CLIENT
 #define TRANS_SERVER
 
-#include <X11/transport.c>
+#include <X11/Xtrans/transport.c>

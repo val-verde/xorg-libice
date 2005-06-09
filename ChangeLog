@@ -1,3 +1,8 @@
+2005-06-09  Alexander Gottwald <ago@freedesktop.org>
+
+	* src/icetrans.c:
+	Replace <X11/transport.c> with <X11/Xtrans/transport.c>
+
 2005-05-21  Alan Coopersmith  <alan.coopersmith@sun.com>
 
 	* configure.ac: 

@@ -36,7 +36,7 @@ Author: Ralph Mor, X Consortium
 #endif
 #include <X11/ICE/ICElib.h>
 #include "ICElibint.h"
-#include <X11/Xtrans.h>
+#include <X11/Xtrans/Xtrans.h>
 #include <stdio.h>
 #ifdef WIN32
 #include <X11/Xwinsock.h>

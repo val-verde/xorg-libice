@@ -1,3 +1,9 @@
+2005-07-08  Keith Packard  <keithp@keithp.com>
+
+	* .cvsignore:
+	* src/.cvsignore:
+	Add .cvsignore files
+
 2005-06-09  Alexander Gottwald <ago@freedesktop.org>
 
 	* src/icetrans.c:

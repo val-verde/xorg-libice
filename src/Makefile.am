@@ -2,7 +2,7 @@ lib_LTLIBRARIES=libICE.la
 
 AM_CFLAGS= -I${top_srcdir}/include $(ICE_CFLAGS) $(XTRANS_CFLAGS)
 
-libICE_la_LDFLAGS = -version-number 6:4:1 -no-undefined
+libICE_la_LDFLAGS = -version-number 6:3:0 -no-undefined
 
 libICE_la_LIBADD = $(ICE_LIBS) $(XTRANS_LIBS)
 

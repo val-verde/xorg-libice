@@ -3,8 +3,8 @@
 
 AC_PREREQ(2.57)
 AC_INIT([libICE],
-        6.3.5,
-        [keithp@keithp.com],
+        0.99.0,
+        [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],
         libICE)
 
 AC_CONFIG_SRCDIR([Makefile.am])
@@ -42,6 +42,8 @@ if test "x$GCC" = "xyes"; then
 	-Wnested-externs -fno-strict-aliasing"
 	CFLAGS="$GCC_WARNINGS $CFLAGS"
 fi
+
+XORG_RELEASE_VERSION
 
 AC_OUTPUT([Makefile
 	   src/Makefile

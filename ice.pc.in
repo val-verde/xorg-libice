@@ -6,5 +6,6 @@ includedir=@includedir@
 Name: ICE
 Description: X Inter Client Exchange Library
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -lICE @ICE_LIBS@
-Cflags: -I${includedir} @ICE_CFLAGS@
+Requires: xproto
+Cflags: -I${includedir}
+Libs: -L${libdir} -lICE

@@ -38,7 +38,7 @@ Author: Ralph Mor, X Consortium
 #include <time.h>
 #define Time_t time_t
 
-static int binaryEqual ();
+static int binaryEqual (const char *a, const char *b, unsigned len);
 
 static int was_called_state;
 
@@ -265,10 +265,7 @@ char    	**errorStringRet;
  */
 
 static int
-binaryEqual (a, b, len)
-
-register char		*a, *b;
-register unsigned	len;
+binaryEqual (const char *a, const char *b, unsigned len)
 
 {
     while (len--)

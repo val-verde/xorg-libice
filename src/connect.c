@@ -524,9 +524,7 @@ ConnectToPeer (char *networkIdsList, char **actualConnectionRet)
 	 * We need to return the actual network connection string
 	 */
 
-	*actualConnectionRet = (char *) malloc (strlen (address) + 1);
-	strcpy (*actualConnectionRet, address);
-
+	*actualConnectionRet = strdup(address);
 	
 	/*
 	 * Return the file descriptor

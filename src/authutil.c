@@ -101,7 +101,7 @@ IceAuthFileName (void)
     if ((ptr1 = getenv("HOMEDRIVE")) && (ptr2 = getenv("HOMEDIR"))) {
 	len1 = strlen (ptr1);
 	len2 = strlen (ptr2);
-    } else if (ptr2 = getenv("USERNAME")) {
+    } else if ((ptr2 = getenv("USERNAME"))) {
 	len1 = strlen (ptr1 = "/users/");
 	len2 = strlen (ptr2);
     }

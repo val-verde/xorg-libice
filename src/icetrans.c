@@ -24,8 +24,8 @@
 #include <config.h>
 #endif
 
-#define ICE_t
-#define TRANS_CLIENT
-#define TRANS_SERVER
+#define ICE_t 1
+#define TRANS_CLIENT 1
+#define TRANS_SERVER 1
 
 #include <X11/Xtrans/transport.c>

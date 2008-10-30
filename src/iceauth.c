@@ -49,10 +49,9 @@ static int was_called_state;
 
 
 char *
-IceGenerateMagicCookie (len)
-
-int len;
-
+IceGenerateMagicCookie (
+	int len
+)
 {
     char    *auth;
     long    ldata[2];

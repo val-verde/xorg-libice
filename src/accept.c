@@ -36,11 +36,10 @@ Author: Ralph Mor, X Consortium
 
 
 IceConn
-IceAcceptConnection (listenObj, statusRet)
-
-IceListenObj 	listenObj;
-IceAcceptStatus	*statusRet;
-
+IceAcceptConnection (
+	IceListenObj 	listenObj,
+	IceAcceptStatus	*statusRet
+)
 {
     IceConn    		iceConn;
     XtransConnInfo	newconn;

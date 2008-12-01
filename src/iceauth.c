@@ -94,19 +94,17 @@ int len;
 
 
 IcePoAuthStatus
-_IcePoMagicCookie1Proc (iceConn, authStatePtr, cleanUp, swap,
-    authDataLen, authData, replyDataLenRet, replyDataRet, errorStringRet)
-
-IceConn		iceConn;
-IcePointer	*authStatePtr;
-Bool 		cleanUp;
-Bool		swap;
-int     	authDataLen;
-IcePointer	authData;
-int 		*replyDataLenRet;
-IcePointer	*replyDataRet;
-char    	**errorStringRet;
-
+_IcePoMagicCookie1Proc (
+	IceConn		iceConn,
+	IcePointer	*authStatePtr,
+	Bool 		cleanUp,
+	Bool		swap,
+	int     	authDataLen,
+	IcePointer	authData,
+	int 		*replyDataLenRet,
+	IcePointer	*replyDataRet,
+	char    	**errorStringRet
+)
 {
     if (cleanUp)
     {
@@ -168,21 +166,20 @@ char    	**errorStringRet;
     }
 }
 
+IcePoAuthProc	_IcePoAuthProcs[] = {_IcePoMagicCookie1Proc};
 
 
 IcePaAuthStatus
-_IcePaMagicCookie1Proc (iceConn, authStatePtr, swap,
-    authDataLen, authData, replyDataLenRet, replyDataRet, errorStringRet)
-
-IceConn		iceConn;
-IcePointer	*authStatePtr;
-Bool		swap;
-int     	authDataLen;
-IcePointer	authData;
-int 		*replyDataLenRet;
-IcePointer	*replyDataRet;
-char    	**errorStringRet;
-
+_IcePaMagicCookie1Proc (
+	IceConn		iceConn,
+	IcePointer	*authStatePtr,
+	Bool		swap,
+	int     	authDataLen,
+	IcePointer	authData,
+	int 		*replyDataLenRet,
+	IcePointer	*replyDataRet,
+	char    	**errorStringRet
+)
 {
     *errorStringRet = NULL;
     *replyDataLenRet = 0;
@@ -252,6 +249,7 @@ char    	**errorStringRet;
     }
 }
 
+IcePaAuthProc	_IcePaAuthProcs[] = {_IcePaMagicCookie1Proc};
 
 
 /*

@@ -2452,18 +2452,16 @@ unsigned long	length;
 
 
 
-void
-_IceProcessCoreMessage (iceConn, opcode, length, swap,
-    replyWait, replyReadyRet, connectionClosedRet)
-
-IceConn 	 iceConn;
-int     	 opcode;
-unsigned long	 length;
-Bool    	 swap;
-IceReplyWaitInfo *replyWait;
-Bool		 *replyReadyRet;
-Bool		 *connectionClosedRet;
-
+static void
+_IceProcessCoreMessage (
+	IceConn 	 iceConn,
+	int     	 opcode,
+	unsigned long	 length,
+	Bool    	 swap,
+	IceReplyWaitInfo *replyWait,
+	Bool		 *replyReadyRet,
+	Bool		 *connectionClosedRet
+)
 {
     Bool replyReady = False;
 
@@ -2541,4 +2539,8 @@ Bool		 *connectionClosedRet;
     if (replyWait)
 	*replyReadyRet = replyReady;
 }
+
+int		_IceVersionCount = 1;
+_IceVersion	_IceVersions[] = {
+		    {IceProtoMajor, IceProtoMinor, _IceProcessCoreMessage}};
 

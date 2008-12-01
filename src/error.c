@@ -369,18 +369,16 @@ int	severity;
  * Default error handler.
  */
 
-void
-_IceDefaultErrorHandler (iceConn, swap,
-    offendingMinorOpcode, offendingSequence, errorClass, severity, values)
-
-IceConn		iceConn;
-Bool		swap;
-int		offendingMinorOpcode;
-unsigned long	offendingSequence;
-int 		errorClass;
-int		severity;
-IcePointer	values;
-
+static void
+_IceDefaultErrorHandler (
+	IceConn		iceConn,
+	Bool		swap,
+	int		offendingMinorOpcode,
+	unsigned long	offendingSequence,
+	int 		errorClass,
+	int		severity,
+	IcePointer	values
+)
 {
     char *str;
     char *pData = (char *) values;
@@ -578,6 +576,7 @@ IcePointer	values;
 	exit (1);
 }
 
+IceErrorHandler   _IceErrorHandler   = _IceDefaultErrorHandler;
 
 
 /* 
@@ -587,10 +586,9 @@ IcePointer	values;
  */
  
 IceErrorHandler
-IceSetErrorHandler (handler)
-
-IceErrorHandler handler;
-
+IceSetErrorHandler (
+	IceErrorHandler handler
+)
 {
     IceErrorHandler oldHandler = _IceErrorHandler;
 
@@ -608,11 +606,10 @@ IceErrorHandler handler;
  * Default IO error handler.
  */
 
-void
-_IceDefaultIOErrorHandler (iceConn)
-
-IceConn iceConn;
-
+static void
+_IceDefaultIOErrorHandler (
+	IceConn		iceConn
+)
 {
     fprintf (stderr,
 	"ICE default IO error handler doing an exit(), pid = %ld, errno = %d\n",
@@ -621,6 +618,7 @@ IceConn iceConn;
     exit (1);
 }
 
+IceIOErrorHandler _IceIOErrorHandler = _IceDefaultIOErrorHandler;
 
 
 /* 
@@ -631,10 +629,9 @@ IceConn iceConn;
  */
  
 IceIOErrorHandler
-IceSetIOErrorHandler (handler)
-
-IceIOErrorHandler handler;
-
+IceSetIOErrorHandler (
+	IceIOErrorHandler handler
+)
 {
     IceIOErrorHandler oldHandler = _IceIOErrorHandler;
 

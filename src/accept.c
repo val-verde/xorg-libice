@@ -50,7 +50,7 @@ IceAcceptConnection (
      * Accept the connection.
      */
 
-    if ((newconn = _IceTransAccept (listenObj->trans_conn, &status)) == 0)
+    if ((newconn = _IceTransAccept (listenObj->trans_conn, &status)) == NULL)
     {
 	if (status == TRANS_ACCEPT_BAD_MALLOC)
 	    *statusRet = IceAcceptBadMalloc;

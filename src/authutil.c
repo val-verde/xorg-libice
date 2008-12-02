@@ -441,7 +441,7 @@ read_counted_string (FILE *file, unsigned short	*countp, char **stringp)
 
     if (len == 0)
     {
-	data = 0;
+	data = NULL;
     }
     else
     {

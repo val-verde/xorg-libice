@@ -38,8 +38,6 @@ Author: Ralph Mor, X Consortium
 #include <time.h>
 #define Time_t time_t
 
-static int binaryEqual (const char *a, const char *b, unsigned len);
-
 static int was_called_state;
 
 /*
@@ -213,7 +211,7 @@ _IcePaMagicCookie1Proc (
 	    IcePaAuthStatus stat;
 
 	    if (authDataLen == length &&
-	        binaryEqual ((char *) authData, data, authDataLen))
+	        memcmp (authData, data, authDataLen) == 0)
 	    {
 		stat = IcePaAuthAccepted;
 	    }
@@ -249,18 +247,3 @@ _IcePaMagicCookie1Proc (
 }
 
 IcePaAuthProc	_IcePaAuthProcs[] = {_IcePaMagicCookie1Proc};
-
-
-/*
- * local routines
- */
-
-static int
-binaryEqual (const char *a, const char *b, unsigned len)
-
-{
-    while (len--)
-	if (*a++ != *b++)
-	    return 0;
-    return 1;
-}

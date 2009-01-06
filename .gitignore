@@ -19,3 +19,7 @@ missing
 mkinstalldirs
 stamp-h1
 *~
+tags
+*.o
+libICE-*.tar.*
+ChangeLog

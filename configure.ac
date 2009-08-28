@@ -3,7 +3,7 @@
 
 AC_PREREQ(2.57)
 AC_INIT([libICE],
-        1.0.5,
+        1.0.6,
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],
         libICE)
 

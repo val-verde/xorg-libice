@@ -1,11 +1,11 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ(2.57)
+AC_PREREQ([2.60])
 AC_INIT([libICE],
-        1.0.6,
+        [1.0.6],
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],
-        libICE)
+        [libICE])
 
 AC_CONFIG_SRCDIR([Makefile.am])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])

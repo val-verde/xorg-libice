@@ -76,6 +76,8 @@ IceListenForConnections (
 
     for (i = 0; i < transCount; i++)
     {
+	_IceTransSetOption(transConns[i], TRANS_CLOSEONEXEC, 1);
+
 	networkId = _IceTransGetMyNetworkId (transConns[i]);
 
 	if (networkId)

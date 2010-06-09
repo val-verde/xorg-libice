@@ -46,5 +46,6 @@ LINT_FLAGS="${LINT_FLAGS} ${ICE_CFLAGS} ${XTRANS_CFLAGS}"
 
 
 AC_OUTPUT([Makefile
+	   doc/Makefile
 	   src/Makefile
 	   ice.pc])

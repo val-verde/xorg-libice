@@ -21,8 +21,8 @@
 # DEALINGS IN THE SOFTWARE.
 #
 
-if ENABLE_DOCS
-doc_sources = ICElib.xml
+if ENABLE_SPECS
+doc_sources = ice.xml
 dist_doc_DATA = $(doc_sources)
 
 if HAVE_XMLTO
@@ -61,4 +61,4 @@ SUFFIXES = .xml .ps .pdf .txt .html
 	$(AM_V_GEN)$(XMLTO) $(XMLTO_FLAGS) --with-fop ps $<
 
 endif HAVE_XMLTO
-endif ENABLE_DOCS
+endif ENABLE_SPECS

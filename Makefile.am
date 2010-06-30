@@ -1,4 +1,4 @@
-SUBDIRS = src doc
+SUBDIRS = doc specs src
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = ice.pc

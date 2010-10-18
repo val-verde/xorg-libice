@@ -1,7 +1,8 @@
 lib_LTLIBRARIES=libICE.la
 
+AM_CPPFLAGS = -I${top_srcdir}/include
+
 AM_CFLAGS = \
-	-I${top_srcdir}/include \
 	$(ICE_CFLAGS) \
 	$(XTRANS_CFLAGS) \
 	$(CWARNFLAGS) \

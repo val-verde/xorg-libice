@@ -26,14 +26,10 @@ XORG_CHECK_SGML_DOCTOOLS(1.5)
 
 # Checks for programs.
 AC_PROG_LIBTOOL
-AC_PROG_CC
 
 # Checks for pkg-config packages
 PKG_CHECK_MODULES(ICE, xproto)
-
 PKG_CHECK_MODULES(XTRANS, xtrans)
-AC_SUBST(XTRANS_CFLAGS)
-AC_SUBST(XTRANS_LIBS)
 
 # Transport selection macro from xtrans.m4
 XTRANS_CONNECTION_FLAGS

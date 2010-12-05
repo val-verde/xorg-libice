@@ -66,6 +66,43 @@ Author: Ralph Mor, X Consortium
     IceDisposeCompleteMessage (_iceConn, _pStart);\
     return (0);\
 }
+
+#ifndef HAVE_ASPRINTF
+/* sprintf variant found in newer libc's that allocates string to print to */
+static int
+asprintf(char ** ret, const char *format, ...) _X_ATTRIBUTE_PRINTF(2,3)
+{
+    char buf[256];
+    int len;
+    va_list ap;
+
+    va_start(ap, format);
+    len = vsnprintf(buf, sizeof(buf), format, ap);
+    va_end(ap);
+
+    len += 1; /* snprintf doesn't count trailing '\0' */
+    if (len <= sizeof(buf))
+    {
+	*ret = strdup(buf);
+    }
+    else
+    {
+	*ret = malloc(len);
+	if (*ret != NULL)
+	{
+	    va_start(ap, format);
+	    len = vsnprintf(ret, len, format, ap);
+	    va_end(ap);
+	}
+    }
+
+    if (*ret == NULL)
+	return -1;
+
+    return len;
+}
+#endif
+
 
 /*
  * IceProcessMessages:
@@ -632,9 +669,8 @@ ProcessError (
 		prefix = "Connection Setup Failed, reason : ";
 
 		EXTRACT_STRING (pData, swap, temp);
-		errorStr = (char *) malloc (
-		    strlen (prefix) + strlen (temp) + 1);
-		sprintf (errorStr, "%s%s", prefix, temp);
+		if (asprintf (&errorStr, "%s%s", prefix, temp) == -1)
+		    errorStr = NULL;
 		free (temp);
 		break;
 
@@ -642,9 +678,8 @@ ProcessError (
 
 		prefix = "Authentication Rejected, reason : ";
 		EXTRACT_STRING (pData, swap, temp);
-		errorStr = (char *) malloc (
-		    strlen (prefix) + strlen (temp) + 1);
-		sprintf (errorStr, "%s%s", prefix, temp);
+		if (asprintf (&errorStr, "%s%s", prefix, temp) == -1)
+		    errorStr = NULL;
 		free (temp);
 		break;
 
@@ -652,9 +687,8 @@ ProcessError (
 
 		prefix = "Authentication Failed, reason : ";
 		EXTRACT_STRING (pData, swap, temp);
-		errorStr = (char *) malloc (
-		    strlen (prefix) + strlen (temp) + 1);
-		sprintf (errorStr, "%s%s", prefix, temp);
+		if (asprintf (&errorStr, "%s%s", prefix, temp) == -1)
+		    errorStr = NULL;
 		free (temp);
 		break;
 
@@ -700,9 +734,8 @@ ProcessError (
 		prefix = "Protocol Setup Failed, reason : ";
 
 		EXTRACT_STRING (pData, swap, temp);
-		errorStr = (char *) malloc (
-		    strlen (prefix) + strlen (temp) + 1);
-		sprintf (errorStr, "%s%s", prefix, temp);
+		if (asprintf (&errorStr, "%s%s", prefix, temp) == -1)
+		    errorStr = NULL;
 		free (temp);
 		break;
 
@@ -710,9 +743,8 @@ ProcessError (
 
 		prefix = "Authentication Rejected, reason : ";
 		EXTRACT_STRING (pData, swap, temp);
-		errorStr = (char *) malloc (
-		    strlen (prefix) + strlen (temp) + 1);
-		sprintf (errorStr, "%s%s", prefix, temp);
+		if (asprintf (&errorStr, "%s%s", prefix, temp) == -1)
+		    errorStr = NULL;
 		free (temp);
 		break;
 
@@ -720,9 +752,8 @@ ProcessError (
 
 		prefix = "Authentication Failed, reason : ";
 		EXTRACT_STRING (pData, swap, temp);
-		errorStr = (char *) malloc (
-		    strlen (prefix) + strlen (temp) + 1);
-		sprintf (errorStr, "%s%s", prefix, temp);
+		if (asprintf (&errorStr, "%s%s", prefix, temp) == -1)
+		    errorStr = NULL;
 		free (temp);
 		break;
 
@@ -730,26 +761,24 @@ ProcessError (
 
 		prefix = "Protocol was already registered : ";
 		EXTRACT_STRING (pData, swap, temp);
-		errorStr = (char *) malloc (
-		    strlen (prefix) + strlen (temp) + 1);
-		sprintf (errorStr, "%s%s", prefix, temp);
+		if (asprintf (&errorStr, "%s%s", prefix, temp) == -1)
+		    errorStr = NULL;
 		free (temp);
 		break;
 
 	    case IceMajorOpcodeDuplicate:
 
 		prefix = "The major opcode was already used : ";
-		errorStr = (char *) malloc (strlen (prefix) + 2);
-		sprintf (errorStr, "%s%d", prefix, (int) *pData);
+		if (asprintf (&errorStr, "%s%d", prefix, (int) *pData) == -1)
+		    errorStr = NULL;
 		break;
 
 	    case IceUnknownProtocol:
 
 		prefix = "Unknown Protocol : ";
 		EXTRACT_STRING (pData, swap, temp);
-		errorStr = (char *) malloc (
-		    strlen (prefix) + strlen (temp) + 1);
-		sprintf (errorStr, "%s%s", prefix, temp);
+		if (asprintf (&errorStr, "%s%s", prefix, temp) == -1)
+		    errorStr = NULL;
 		free (temp);
 		break;
 
@@ -1226,9 +1255,8 @@ ProcessAuthRequired (
 	    prefix = "Authentication Failed, reason : ";
 	}
 
-	returnErrorString = (char *) malloc (strlen (prefix) +
-	    strlen (errorString) + 1);
-	sprintf (returnErrorString, "%s%s", prefix, errorString);
+	if (asprintf (&returnErrorString, "%s%s", prefix, errorString) == -1)
+	    returnErrorString = NULL;
 	free (errorString);
 	
 	if (iceConn->connect_to_you)
@@ -1653,9 +1681,8 @@ ProcessAuthNextPhase (
 	    prefix = "Authentication Failed, reason : ";
 	}
 
-	returnErrorString = (char *) malloc (strlen (prefix) +
-	    strlen (errorString) + 1);
-	sprintf (returnErrorString, "%s%s", prefix, errorString);
+	if (asprintf (&returnErrorString, "%s%s", prefix, errorString) == -1)
+	    returnErrorString = NULL;
 	free (errorString);
 
 	if (iceConn->connect_to_you)

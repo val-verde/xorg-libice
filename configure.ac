@@ -39,6 +39,9 @@ AC_DEFINE(ICE_t, 1, [Xtrans transport type])
 # Checks for header files.
 AC_HEADER_STDC
 
+# Checks for functions
+AC_CHECK_FUNCS([asprintf])
+
 dnl Allow checking code with lint, sparse, etc.
 XORG_WITH_LINT
 XORG_LINT_LIBRARY([ICE])

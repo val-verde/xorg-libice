@@ -91,7 +91,7 @@ asprintf(char ** ret, const char *format, ...) _X_ATTRIBUTE_PRINTF(2,3)
 	if (*ret != NULL)
 	{
 	    va_start(ap, format);
-	    len = vsnprintf(ret, len, format, ap);
+	    len = vsnprintf(*ret, len, format, ap);
 	    va_end(ap);
 	}
     }

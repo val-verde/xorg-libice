@@ -68,9 +68,11 @@ Author: Ralph Mor, X Consortium
 }
 
 #ifndef HAVE_ASPRINTF
-/* sprintf variant found in newer libc's that allocates string to print to */
-static int
-asprintf(char ** ret, const char *format, ...) _X_ATTRIBUTE_PRINTF(2,3)
+# include <stdarg.h>
+
+/* sprintf variant found in newer libc's which allocates string to print to */
+static int _X_ATTRIBUTE_PRINTF(2,3)
+asprintf(char ** ret, const char *format, ...)
 {
     char buf[256];
     int len;
@@ -80,19 +82,25 @@ asprintf(char ** ret, const char *format, ...) _X_ATTRIBUTE_PRINTF(2,3)
     len = vsnprintf(buf, sizeof(buf), format, ap);
     va_end(ap);
 
-    len += 1; /* snprintf doesn't count trailing '\0' */
-    if (len <= sizeof(buf))
+    if (len < 0)
+	return -1;
+
+    if (len < sizeof(buf))
     {
 	*ret = strdup(buf);
     }
     else
     {
-	*ret = malloc(len);
+	*ret = malloc(len + 1); /* snprintf doesn't count trailing '\0' */
 	if (*ret != NULL)
 	{
 	    va_start(ap, format);
-	    len = vsnprintf(*ret, len, format, ap);
+	    len = vsnprintf(*ret, len + 1, format, ap);
 	    va_end(ap);
+	    if (len < 0) {
+		free(*ret);
+		*ret = NULL;
+	    }
 	}
     }
 

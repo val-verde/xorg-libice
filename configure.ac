@@ -39,11 +39,6 @@ PKG_CHECK_MODULES(XTRANS, xtrans)
 XTRANS_CONNECTION_FLAGS
 AC_DEFINE(ICE_t, 1, [Xtrans transport type])
 
-# Checks for libraries.
-
-# Checks for header files.
-AC_HEADER_STDC
-
 # Checks for functions
 AC_CHECK_FUNCS([asprintf])
 

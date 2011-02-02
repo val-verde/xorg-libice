@@ -1,5 +1,3 @@
-#                                               -*- Autoconf -*-
-# Process this file with autoconf to produce a configure script.
 
 # Initialize Autoconf
 AC_PREREQ([2.60])
@@ -17,6 +15,9 @@ AC_USE_SYSTEM_EXTENSIONS
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
 AM_MAINTAINER_MODE
 
+# Initialize libtool
+AC_PROG_LIBTOOL
+
 # Require xorg-macros minimum of 1.10 for DocBook XML documentation
 m4_ifndef([XORG_MACROS_VERSION],
           [m4_fatal([must install xorg-macros 1.10 or later before running autoconf/autogen])])
@@ -28,10 +29,7 @@ XORG_WITH_XMLTO(0.0.20)
 XORG_WITH_FOP
 XORG_CHECK_SGML_DOCTOOLS(1.5)
 
-# Checks for programs.
-AC_PROG_LIBTOOL
-
-# Checks for pkg-config packages
+# Obtain compiler/linker options for depedencies
 PKG_CHECK_MODULES(ICE, xproto)
 PKG_CHECK_MODULES(XTRANS, xtrans)
 
@@ -39,17 +37,17 @@ PKG_CHECK_MODULES(XTRANS, xtrans)
 XTRANS_CONNECTION_FLAGS
 AC_DEFINE(ICE_t, 1, [Xtrans transport type])
 
-# Checks for functions
+# Checks for library functions.
 AC_CHECK_FUNCS([asprintf])
 
-dnl Allow checking code with lint, sparse, etc.
+# Allow checking code with lint, sparse, etc.
 XORG_WITH_LINT
 XORG_LINT_LIBRARY([ICE])
 LINT_FLAGS="${LINT_FLAGS} ${ICE_CFLAGS} ${XTRANS_CFLAGS}"
 
-
-AC_OUTPUT([Makefile
-	   doc/Makefile
-	   specs/Makefile
-	   src/Makefile
-	   ice.pc])
+AC_CONFIG_FILES([Makefile
+		doc/Makefile
+		specs/Makefile
+		src/Makefile
+		ice.pc])
+AC_OUTPUT

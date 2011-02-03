@@ -30,8 +30,7 @@ XORG_WITH_FOP
 XORG_CHECK_SGML_DOCTOOLS(1.5)
 
 # Obtain compiler/linker options for depedencies
-PKG_CHECK_MODULES(ICE, xproto)
-PKG_CHECK_MODULES(XTRANS, xtrans)
+PKG_CHECK_MODULES(ICE, xproto xtrans)
 
 # Transport selection macro from xtrans.m4
 XTRANS_CONNECTION_FLAGS

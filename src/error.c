@@ -284,7 +284,7 @@ _IceErrorMajorOpcodeDuplicate (
 	int	majorOpcode
 )
 {
-    char mOp = (char) majorOpcode;
+    char mOp[8] = { (char) majorOpcode };
 
     IceErrorHeader (iceConn,
 	0, ICE_ProtocolSetup,
@@ -293,7 +293,7 @@ _IceErrorMajorOpcodeDuplicate (
 	IceMajorOpcodeDuplicate,
 	1 /* length */);
 
-    IceWriteData (iceConn, 8, &mOp);
+    IceWriteData (iceConn, 8, mOp);
     IceFlush (iceConn);
 }
 
@@ -334,7 +334,7 @@ _IceErrorBadMajor (
 	int	severity
 )
 {
-    char maj = (char) offendingMajor;
+    char maj[8] = { (char) offendingMajor };
 
     IceErrorHeader (iceConn,
 	0, offendingMinor,
@@ -343,7 +343,7 @@ _IceErrorBadMajor (
 	IceBadMajor,
 	1 /* length */);
 
-    IceWriteData (iceConn, 8, &maj);
+    IceWriteData (iceConn, 8, maj);
     IceFlush (iceConn);
 }
 

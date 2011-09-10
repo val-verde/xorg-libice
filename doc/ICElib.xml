@@ -10,6 +10,7 @@
    <title>Inter-Client Exchange Library</title>
    <subtitle>X Consortium Standard</subtitle>
    <releaseinfo>X Version 11, Release 6.4</releaseinfo>
+   <releaseinfo>Version 1.0</releaseinfo>
    <authorgroup>
      <author>
        <firstname>Ralph</firstname><surname>Mor</surname>
@@ -20,7 +21,6 @@
    <copyright><year>1993</year><holder>X Consortium</holder></copyright>
    <copyright><year>1994</year><holder>X Consortium</holder></copyright>
    <copyright><year>1996</year><holder>X Consortium</holder></copyright>
-   <revhistory><revision><revnumber>1.0</revnumber><date></date></revision></revhistory>
 
 <legalnotice>
 <para>

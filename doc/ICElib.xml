@@ -19,9 +19,10 @@
        <affiliation><orgname>X Consortium</orgname></affiliation>
      </author>
    </authorgroup>
-   <copyright><year>1993</year><holder>X Consortium</holder></copyright>
-   <copyright><year>1994</year><holder>X Consortium</holder></copyright>
-   <copyright><year>1996</year><holder>X Consortium</holder></copyright>
+   <copyright>
+     <year>1993</year><year>1994</year><year>1996</year>
+     <holder>X Consortium</holder>
+   </copyright>
 
 <legalnotice>
 <para>

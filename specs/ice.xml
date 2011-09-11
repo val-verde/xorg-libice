@@ -13,6 +13,7 @@
    <authorgroup>
       <author>
          <firstname>Robert</firstname><surname>Scheifler</surname>
+         <affiliation><orgname>X Consortium</orgname></affiliation>
       </author>
       <othercredit>
          <firstname>Jordan</firstname><surname>Brown</surname>
@@ -23,7 +24,6 @@
    <copyright><year>1993</year><holder>X Consortium</holder></copyright>
    <copyright><year>1994</year><holder>X Consortium</holder></copyright>
    <releaseinfo>Version 1.0</releaseinfo>
-   <affiliation><orgname>X Consortium</orgname></affiliation>
    <productnumber>X Version 11, Release 7</productnumber>
 
 <legalnotice>

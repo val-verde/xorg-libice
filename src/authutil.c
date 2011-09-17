@@ -171,7 +171,7 @@ IceLockAuthFile (
 	    unlink (link_name);
 	}
     }
-    
+
     while (retries > 0)
     {
 	if (creat_fd == -1)
@@ -406,18 +406,18 @@ read_string (FILE *file, char **stringp)
 	return (0);
 
     data = malloc ((unsigned) len + 1);
-    
+
     if (!data)
 	    return (0);
-    
-    if (len != 0) 
+
+    if (len != 0)
     {
 	if (fread (data, (int) sizeof (char), (int) len, file) != len)
 	{
 	    free (data);
 	    return (0);
 	}
-	
+
     }
     data[len] = '\0';
 

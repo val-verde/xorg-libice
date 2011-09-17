@@ -304,7 +304,7 @@ IceProcessMessages (
 	 * to use message replies unless we translate opcodes before
 	 * comparing them.
 	 */
-	
+
 	{
 	    int op;
 
@@ -887,17 +887,17 @@ ProcessConnectionSetup (
 
     pData = pStart;
     pEnd = pStart + (length << 3);
-    
-    SKIP_STRING (pData, swap, pEnd, 
+
+    SKIP_STRING (pData, swap, pEnd,
 		 BAIL_STRING(iceConn, ICE_ConnectionSetup,
 			     pStart));			       /* vendor */
-    SKIP_STRING (pData, swap, pEnd, 
+    SKIP_STRING (pData, swap, pEnd,
 		 BAIL_STRING(iceConn, ICE_ConnectionSetup,
 			    pStart));	        	       /* release */
-    SKIP_LISTOF_STRING (pData, swap, (int) message->authCount, pEnd, 
+    SKIP_LISTOF_STRING (pData, swap, (int) message->authCount, pEnd,
 			BAIL_STRING(iceConn, ICE_ConnectionSetup,
 				   pStart));		       /* auth names */
-    
+
     pData += (message->versionCount * 4);		       /* versions */
 
     CHECK_COMPLETE_SIZE (iceConn, ICE_ConnectionSetup,
@@ -959,7 +959,7 @@ ProcessConnectionSetup (
 	{
 	    for (i = 0; i < hisAuthCount; i++)
 		free (hisAuthNames[i]);
-	
+
 	    free ((char *) hisAuthNames);
 	}
 
@@ -1018,7 +1018,7 @@ ProcessConnectionSetup (
 	    {
 		accept_setup_now = 1;
 	    }
-	    else 
+	    else
 	    {
 		_IceErrorAuthenticationRejected (iceConn,
 	            ICE_ConnectionSetup, "None of the authentication protocols specified are supported and host-based authentication failed");
@@ -1078,7 +1078,7 @@ ProcessConnectionSetup (
 	if (errorString)
 	    free (errorString);
     }
-    
+
     if (accept_setup_now)
     {
 	AcceptConnection (iceConn, hisVersionIndex);
@@ -1092,7 +1092,7 @@ ProcessConnectionSetup (
     {
 	for (i = 0; i < hisAuthCount; i++)
 	    free (hisAuthNames[i]);
-	
+
 	free ((char *) hisAuthNames);
     }
 
@@ -1266,7 +1266,7 @@ ProcessAuthRequired (
 	if (asprintf (&returnErrorString, "%s%s", prefix, errorString) == -1)
 	    returnErrorString = NULL;
 	free (errorString);
-	
+
 	if (iceConn->connect_to_you)
 	{
 	    _IceConnectionError *errorReply =
@@ -1787,7 +1787,7 @@ ProcessConnectionReply (
 
 	    _IceErrorBadValue (iceConn, 0,
 		ICE_ConnectionReply, 2, 1, &errIndex);
-	    
+
 	    errorReply->type = ICE_CONNECTION_ERROR;
 	    errorReply->error_message =
 		"Received bad version index in Connection Reply";
@@ -1878,16 +1878,16 @@ ProcessProtocolSetup (
     pEnd = pStart + (length << 3);
 
     SKIP_STRING (pData, swap, pEnd,
-		 BAIL_STRING(iceConn, ICE_ProtocolSetup, 
+		 BAIL_STRING(iceConn, ICE_ProtocolSetup,
 			     pStart));			       /* proto name */
     SKIP_STRING (pData, swap, pEnd,
-		 BAIL_STRING(iceConn, ICE_ProtocolSetup, 
+		 BAIL_STRING(iceConn, ICE_ProtocolSetup,
 			     pStart));			       /* vendor */
     SKIP_STRING (pData, swap, pEnd,
-		 BAIL_STRING(iceConn, ICE_ProtocolSetup, 
+		 BAIL_STRING(iceConn, ICE_ProtocolSetup,
 			     pStart));			       /* release */
     SKIP_LISTOF_STRING (pData, swap, (int) message->authCount, pEnd,
-			BAIL_STRING(iceConn, ICE_ProtocolSetup, 
+			BAIL_STRING(iceConn, ICE_ProtocolSetup,
 				    pStart));		       /* auth names */
     pData += (message->versionCount * 4);		       /* versions */
 
@@ -1997,7 +1997,7 @@ ProcessProtocolSetup (
 	{
 	    for (i = 0; i < hisAuthCount; i++)
 		free (hisAuthNames[i]);
-	
+
 	    free ((char *) hisAuthNames);
 	}
 
@@ -2057,7 +2057,7 @@ ProcessProtocolSetup (
 	    {
 		accept_setup_now = 1;
 	    }
-	    else 
+	    else
 	    {
 		_IceErrorAuthenticationRejected (iceConn,
 	            ICE_ProtocolSetup, "None of the authentication protocols specified are supported and host-based authentication failed");
@@ -2087,7 +2087,7 @@ ProcessProtocolSetup (
 	    _IceProtoSetupToMeInfo *setupInfo;
 
 	    AuthRequired (iceConn, hisAuthIndex, authDataLen, authData);
-	 
+
 	    iceConn->protosetup_to_me = setupInfo =
 		(_IceProtoSetupToMeInfo *) malloc (
 		sizeof (_IceProtoSetupToMeInfo));
@@ -2300,14 +2300,14 @@ ProcessProtocolReply (
 
 	    _IceErrorBadValue (iceConn, 0,
 		ICE_ProtocolReply, 2, 1, &errIndex);
-	    
+
 	    errorReply->type = ICE_PROTOCOL_ERROR;
 	    errorReply->error_message =
 		"Received bad version index in Protocol Reply";
 	}
 	else
 	{
-	    _IceProtocolReply *reply = 
+	    _IceProtocolReply *reply =
 	        &(((_IceReply *) (replyWait->reply))->protocol_reply);
 
 	    reply->type = ICE_PROTOCOL_REPLY;
@@ -2362,7 +2362,7 @@ ProcessPingReply (
     if (iceConn->ping_waits)
     {
 	_IcePingWait *next = iceConn->ping_waits->next;
-	
+
 	(*iceConn->ping_waits->ping_reply_proc) (iceConn,
 	    iceConn->ping_waits->client_data);
 

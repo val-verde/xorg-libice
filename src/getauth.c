@@ -246,7 +246,7 @@ auth_valid (const char *auth_name, int num_auth_names,
 	{
 	    break;
 	}
-   
+
     if (i < num_auth_names)
     {
 	*index_ret = i;

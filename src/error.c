@@ -116,7 +116,7 @@ _IceErrorBadValue (
 
     if (PAD64 (length))
 	IceWritePad (iceConn, PAD64 (length));
-    
+
     IceFlush (iceConn);
 }
 
@@ -563,12 +563,12 @@ _IceDefaultErrorHandler (
 IceErrorHandler   _IceErrorHandler   = _IceDefaultErrorHandler;
 
 
-/* 
+/*
  * This procedure sets the ICE error handler to be the specified
  * routine.  If NULL is passed in the default error handler is restored.
  * The function's return value is the previous error handler.
  */
- 
+
 IceErrorHandler
 IceSetErrorHandler (
 	IceErrorHandler handler
@@ -605,13 +605,13 @@ _IceDefaultIOErrorHandler (
 IceIOErrorHandler _IceIOErrorHandler = _IceDefaultIOErrorHandler;
 
 
-/* 
+/*
  * This procedure sets the ICE fatal I/O error handler to be the
  * specified routine.  If NULL is passed in the default error
  * handler is restored.   The function's return value is the
  * previous error handler.
  */
- 
+
 IceIOErrorHandler
 IceSetIOErrorHandler (
 	IceIOErrorHandler handler

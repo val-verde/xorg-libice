@@ -289,7 +289,7 @@ typedef struct {
     if (_pBuf > _end) { \
 	_bail; \
     } \
-} 
+}
 
 #define SKIP_LISTOF_STRING(_pBuf, _swap, _count, _end, _bail) \
 { \

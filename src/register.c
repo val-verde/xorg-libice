@@ -56,7 +56,7 @@ IceRegisterForProtocolSetup (
 		/*
 		 * We've already registered this protocol.
 		 */
-		
+
 		return (i);
 	    }
 	    else
@@ -64,7 +64,7 @@ IceRegisterForProtocolSetup (
 		break;
 	    }
 	}
-	    
+
     if (i <= _IceLastMajorOpcode)
     {
 	p = _IceProtocols[i - 1].orig_client =
@@ -156,7 +156,7 @@ IceRegisterForProtocolReply (
 		/*
 		 * We've already registered this protocol.
 		 */
-		
+
 		return (i);
 	    }
 	    else
@@ -164,7 +164,7 @@ IceRegisterForProtocolReply (
 		break;
 	    }
 	}
-	    
+
 
     if (i <= _IceLastMajorOpcode)
     {

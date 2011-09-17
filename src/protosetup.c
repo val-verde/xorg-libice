@@ -229,7 +229,7 @@ IceProtocolSetup (
 	    else /* reply.type == ICE_PROTOCOL_ERROR */
 	    {
 		/* Protocol Setup failed */
-		
+
 		strncpy (errorStringRet, reply.protocol_error.error_message,
 		    errorLength);
 
@@ -251,7 +251,7 @@ IceProtocolSetup (
 	*minorVersionRet = versionRec->minor_version;
 	*vendorRet = reply.protocol_reply.vendor;
 	*releaseRet = reply.protocol_reply.release;
-	
+
 
 	/*
 	 * Increase the reference count for the number of active protocols.

@@ -53,7 +53,7 @@ allows the sharing of many aspects of the implementation.
 </abstract>
 </bookinfo>
 
-<chapter id="purpose_and_goals">
+<chapter id='Purpose_and_Goals'>
 <title>Purpose and Goals</title>
 
 <para>
@@ -88,7 +88,7 @@ allow them to share the same transport layer connection.</para>
 
 </chapter>
 
-<chapter id="overview_of_the_protocol">
+<chapter id='Overview_of_the_Protocol'>
 <title>Overview of the Protocol</title>
 
 
@@ -219,7 +219,7 @@ from party A.</para>
 <!--  .nH 1 "Data Types" -->
 </chapter>
 
-<chapter id="data_types">
+<chapter id='Data_Types'>
 <title>Data Types</title>
 
 <para>ICE messages contain several types of data.  Byte order is negotiated in
@@ -236,7 +236,7 @@ to pad <emphasis remap='I'>E</emphasis> bytes to the next multiple of
 pad(<emphasis remap='I'>E</emphasis>, <emphasis remap='I'>b</emphasis>) = (<emphasis remap='I'>b</emphasis> - (<emphasis remap='I'>E</emphasis> mod <emphasis remap='I'>b</emphasis>)) mod <emphasis remap='I'>b</emphasis>
 </literallayout>
 
-<sect1 id="primitive_types">
+<sect1 id='Primitive_Types'>
 <title>Primitive Types</title>
 
 <informaltable pgwide='1' frame='none'>
@@ -279,7 +279,7 @@ Encoding</entry>
 
 </sect1>
 
-<sect1 id="complex_types">
+<sect1 id='Complex_Types'>
 <title>Complex Types</title>
 
 <informaltable pgwide='1' frame='none'>
@@ -311,7 +311,7 @@ varies depending on the context; see the encoding section.</para>
 <!--  .nH 1 "Message Format" -->
 </sect1>
 
-<sect1 id="message_format">
+<sect1 id='Message_Format'>
 <title>Message Format</title>
 
 <para>All ICE messages include the following information:</para>
@@ -386,7 +386,7 @@ error.
 
 </chapter>
 
-<chapter id="overall_protocol_description">
+<chapter id='Overall_Protocol_Description'>
 <title>Overall Protocol Description</title>
 
 <para>
@@ -460,10 +460,8 @@ indicates the sender is unwilling to accept any further
 messages for any protocols on the connection.  The sender
 is required to conform to specified severity conditions
 for generic and ICE (major opcode 0) errors; see
-<link linkend="generic_error_classes">
-<xref linkend="generic_error_classes"></xref></link> and
-<link linkend="ice_error_classes">
-<xref linkend="ice_error_classes"></xref></link>.
+<xref linkend='Generic_Error_Classes' xrefstyle='select: title'/>
+<xref linkend='ICE_Error_Classes' xrefstyle='select: title'/>
 .
 The class defines the generic class of
 error.  Classes are specified separately for each protocol (numeric
@@ -473,7 +471,7 @@ for the protocol.
 </para>
 </chapter>
 
-<chapter id="ice_control_subprotocol__major_opcode_0">
+<chapter id='ICE_Control_Subprotocol____Major_Opcode_0_0'>
 <title>ICE Control Subprotocol -- Major Opcode 0</title>
 
 <para>
@@ -1072,7 +1070,7 @@ connection.  Either party may again initiate
 <function>WantToClose</function> at some future time.
 </para>
 
-<sect1 id="generic_error_classes">
+<sect1 id='Generic_Error_Classes'>
 <title>Generic Error Classes</title>
 
 <para>
@@ -1204,7 +1202,7 @@ CARD32 Length of offending value.
 
 </sect1>
 
-<sect1 id="ice_error_classes">
+<sect1 id='ICE_Error_Classes'>
 <title>ICE Error Classes</title>
 
 <para>These errors are all major opcode 0 errors.</para>
@@ -1496,7 +1494,7 @@ existing registration.
 </sect1>
 </chapter>
 
-<chapter id="state_diagrams">
+<chapter id='State_Diagrams'>
 <title>State Diagrams</title>
 
 <para>
@@ -1636,7 +1634,7 @@ Here are the state transitions for shutting down the connection:
      connection close -&gt; <emphasis remap='C'>quit</emphasis>
 </literallayout>
 </chapter>
-<chapter id="protocol_encoding">
+<chapter id='Protocol_Encoding'>
 <title>Protocol Encoding</title>
 
 <para>
@@ -1659,7 +1657,7 @@ additional padding.  The number of repetitions must be specified elsewhere
 in the message.
 </para>
 
-<sect1 id="primitives">
+<sect1 id='Primitives'>
 <title>Primitives</title>
 
 <informaltable pgwide='1' frame='none'>
@@ -1702,7 +1700,7 @@ Encoding</para></entry>
 
 </sect1>
 
-<sect1 id="enumerations">
+<sect1 id='Enumerations'>
 <title>Enumerations</title>
 
 
@@ -1735,7 +1733,7 @@ Encoding</para></entry>
 
 </sect1>
 
-<sect1 id="compound_types">
+<sect1 id='Compound_Types'>
 <title>Compound Types</title>
 
 <informaltable pgwide='1' frame='none'>
@@ -1801,7 +1799,7 @@ Encoding</para></entry>
 
 </sect1>
 
-<sect1 id="ice_minor_opcodes">
+<sect1 id='ICE_Minor_opcodes'>
 <title>ICE Minor opcodes</title>
 
 <informaltable pgwide='0' frame='none'>
@@ -1873,7 +1871,7 @@ Encoding</para></entry>
 
 </sect1>
 
-<sect1 id="message_encoding">
+<sect1 id='Message_Encoding'>
 <title>Message Encoding</title>
 
 <literallayout class="monospaced">
@@ -2034,7 +2032,7 @@ Encoding</para></entry>
 
 </sect1>
 
-<sect1 id="error_class_encoding">
+<sect1 id='Error_Class_Encoding'>
 <title>Error Class Encoding</title>
 
 <para>
@@ -2042,7 +2040,7 @@ Generic errors have classes in the range 0x8000-0xFFFF, and
 subprotocol-specific errors are in the range 0x0000-0x7FFF.
 </para>
 
-<sect2 id="generic_error_class_encoding">
+<sect2 id='Generic_Error_Class_Encoding'>
 <title>Generic Error Class Encoding</title>
 
 <informaltable pgwide='0' frame='none'>
@@ -2077,7 +2075,7 @@ subprotocol-specific errors are in the range 0x0000-0x7FFF.
 </informaltable>
 
 </sect2>
-<sect2 id="ice_specific_error_class_encoding">
+<sect2 id='ICE_specific_Error_Class_Encoding'>
 <title>ICE-specific Error Class Encoding</title>
 
 <informaltable pgwide='0' frame='none'>
@@ -2139,7 +2137,7 @@ subprotocol-specific errors are in the range 0x0000-0x7FFF.
 
 <title>Modification History</title>
 
-<sect1 id="release_6_to_release_6_1">
+<sect1 id='Release_6_to_Release_61_1'>
 <title>Release 6 to Release 6.1</title>
 <para>
 Release 6.1 added the ICE X rendezvous protocol (Appendix B) and
@@ -2147,7 +2145,7 @@ updated the document version to 1.1.
 </para>
 </sect1>
 
-<sect1 id="release_6_1_to_release_6_3">
+<sect1 id='Release_61_to_Release_63_3'>
 <title>Release 6.1 to Release 6.3</title>
 <para>Release 6.3 added the listen on well known ports feature.</para>
 </sect1>
@@ -2157,7 +2155,7 @@ updated the document version to 1.1.
 <appendix id="ice_x_rendezvous_protocol">
 <title>ICE X Rendezvous Protocol</title>
 
-<sect1 id="introduction">
+<sect1 id='Introduction'>
 <title>Introduction</title>
 <para>
 The ICE X rendezvous protocol is designed to answer the need posed
@@ -2168,7 +2166,7 @@ connections to the same X server.
 </para>
 </sect1>
 
-<sect1 id="overview_of_ice_x_rendezvous">
+<sect1 id='Overview_of_ICE_X_Rendezvous'>
 <title>Overview of ICE X Rendezvous</title>
 
 <para>
@@ -2187,7 +2185,7 @@ with the ICE answering party.
 </para>
 </sect1>
 
-<sect1 id="registering_known_protocols">
+<sect1 id='Registering_Known_Protocols'>
 <title>Registering Known Protocols</title>
 
 <para>
@@ -2216,7 +2214,7 @@ or remove the ICE_PROTOCOLS property entirely.
 </para>
 </sect1>
 
-<sect1 id="initiating_the_rendezvoud">
+<sect1 id='Initiating_the_Rendezvous'>
 <title>Initiating the Rendezvous</title>
 
 <para>
@@ -2534,7 +2532,7 @@ for ICE subprotocol <emphasis remap='I'>pname</emphasis>.
 </note>
 </sect1>
 
-<sect1 id="ice_subprotocol_versioning">
+<sect1 id='ICE_Subprotocol_Versioning'>
 <title>ICE Subprotocol Versioning</title>
 
 <para>

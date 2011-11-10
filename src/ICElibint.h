@@ -432,24 +432,24 @@ extern void _IceErrorNoVersion (
 extern void _IceErrorSetupFailed (
     IceConn		/* iceConn */,
     int			/* offendingMinor */,
-    char *		/* reason */
+    const char *	/* reason */
 );
 
 extern void _IceErrorAuthenticationRejected (
     IceConn		/* iceConn */,
     int			/* offendingMinor */,
-    char *		/* reason */
+    const char *	/* reason */
 );
 
 extern void _IceErrorAuthenticationFailed (
     IceConn		/* iceConn */,
     int			/* offendingMinor */,
-    char *		/* reason */
+    const char *	/* reason */
 );
 
 extern void _IceErrorProtocolDuplicate (
     IceConn		/* iceConn */,
-    char *		/* protocolName */
+    const char *	/* protocolName */
 );
 
 extern void _IceErrorMajorOpcodeDuplicate (
@@ -459,7 +459,7 @@ extern void _IceErrorMajorOpcodeDuplicate (
 
 extern void _IceErrorUnknownProtocol (
     IceConn		/* iceConn */,
-    char *		/* protocolName */
+    const char *	/* protocolName */
 );
 
 extern void _IceAddOpcodeMapping (

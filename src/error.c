@@ -165,7 +165,7 @@ void
 _IceErrorSetupFailed (
 	IceConn	iceConn,
 	int	offendingMinor,
-	char	*reason
+	const char	*reason
 )
 {
     char *pBuf, *pStart;
@@ -196,7 +196,7 @@ void
 _IceErrorAuthenticationRejected (
 	IceConn	iceConn,
 	int	offendingMinor,
-	char	*reason
+	const char	*reason
 )
 {
     char *pBuf, *pStart;
@@ -225,7 +225,7 @@ void
 _IceErrorAuthenticationFailed (
 	IceConn	iceConn,
 	int	offendingMinor,
-	char	*reason
+	const char	*reason
 )
 {
     char *pBuf, *pStart;
@@ -253,7 +253,7 @@ _IceErrorAuthenticationFailed (
 void
 _IceErrorProtocolDuplicate (
 	IceConn	iceConn,
-	char	*protocolName
+	const char	*protocolName
 )
 {
     char *pBuf, *pStart;
@@ -301,7 +301,7 @@ _IceErrorMajorOpcodeDuplicate (
 void
 _IceErrorUnknownProtocol (
 	IceConn	iceConn,
-	char	*protocolName
+	const char	*protocolName
 )
 {
     char *pBuf, *pStart;

@@ -338,9 +338,9 @@ IceWriteAuthFileEntry (
 
 IceAuthFileEntry *
 IceGetAuthFileEntry (
-	char	*protocol_name,
-	char	*network_id,
-	char	*auth_name
+	const char	*protocol_name,
+	const char	*network_id,
+	const char	*auth_name
 )
 {
     FILE    		*auth_file;

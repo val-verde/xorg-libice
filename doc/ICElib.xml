@@ -4430,9 +4430,9 @@ protocol_name/network_id/auth_name tuple, use
 <funcsynopsis id='IceGetAuthFileEntry'>
 <funcprototype>
   <funcdef>IceAuthFileEntry<function> *IceGetAuthFileEntry</function></funcdef>
-    <paramdef>char<parameter> *protocol_name</parameter></paramdef>
-    <paramdef>char<parameter> *network_id</parameter></paramdef>
-    <paramdef>char<parameter> *auth_name</parameter></paramdef>
+    <paramdef>const char *<parameter>protocol_name</parameter></paramdef>
+    <paramdef>const char *<parameter>network_id</parameter></paramdef>
+    <paramdef>const char *<parameter>auth_name</parameter></paramdef>
 </funcprototype>
 </funcsynopsis>
 

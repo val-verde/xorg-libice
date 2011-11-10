@@ -118,7 +118,7 @@ IceProtocolSetup (
 	_IceGetPoValidAuthIndices (myProtocol->protocol_name,
 	    iceConn->connection_string,
 	    myProtocol->orig_client->auth_count,
-	    myProtocol->orig_client->auth_names,
+	    (const char **) myProtocol->orig_client->auth_names,
             &authCount, authIndices);
 
     }

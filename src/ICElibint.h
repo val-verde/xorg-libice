@@ -397,7 +397,7 @@ extern _IceProtocol	_IceProtocols[];
 extern int         	_IceLastMajorOpcode;
 
 extern int		_IceAuthCount;
-extern char		*_IceAuthNames[];
+extern const char	*_IceAuthNames[];
 extern IcePoAuthProc	_IcePoAuthProcs[];
 extern IcePaAuthProc	_IcePaAuthProcs[];
 
@@ -505,35 +505,35 @@ extern void _IceConnectionClosed (
 );
 
 extern void _IceGetPoAuthData (
-    char *		/* protocol_name */,
-    char *		/* address */,
-    char *		/* auth_name */,
+    const char *	/* protocol_name */,
+    const char *	/* address */,
+    const char *	/* auth_name */,
     unsigned short *	/* auth_data_length_ret */,
     char **		/* auth_data_ret */
 );
 
 extern void _IceGetPaAuthData (
-    char *		/* protocol_name */,
-    char *		/* address */,
-    char *		/* auth_name */,
+    const char *	/* protocol_name */,
+    const char *	/* address */,
+    const char *	/* auth_name */,
     unsigned short *	/* auth_data_length_ret */,
     char **		/* auth_data_ret */
 );
 
 extern void _IceGetPoValidAuthIndices (
-    char *		/* protocol_name */,
-    char *		/* address */,
+    const char *	/* protocol_name */,
+    const char *	/* address */,
     int			/* num_auth_names */,
-    char **		/* auth_names */,
+    const char **	/* auth_names */,
     int	*		/* num_indices_ret */,
     int	*		/* indices_ret */
 );
 
 extern void _IceGetPaValidAuthIndices (
-    char *		/* protocol_name */,
-    char *		/* address */,
+    const char *	/* protocol_name */,
+    const char *	/* address */,
     int			/* num_auth_names */,
-    char **		/* auth_names */,
+    const char **	/* auth_names */,
     int	*		/* num_indices_ret */,
     int	*		/* indices_ret */
 );

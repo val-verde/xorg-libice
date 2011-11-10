@@ -861,7 +861,7 @@ ProcessConnectionSetup (
     int  hisMajorVersion, hisMinorVersion;
     int	 myAuthCount, hisAuthCount;
     int	 found, i, j;
-    char *myAuthName, **hisAuthNames = NULL;
+    char **hisAuthNames = NULL;
     char *pData, *pStart, *pEnd;
     char *vendor = NULL;
     char *release = NULL;
@@ -983,7 +983,7 @@ ProcessConnectionSetup (
     {
 	if (authUsableFlags[i])
 	{
-	    myAuthName = _IceAuthNames[i];
+	    const char *myAuthName = _IceAuthNames[i];
 
 	    for (j = 0; j < hisAuthCount && !found; j++)
 		if (strcmp (myAuthName, hisAuthNames[j]) == 0)
@@ -1838,7 +1838,7 @@ ProcessProtocolSetup (
     int	 	      	myAuthCount, hisAuthCount;
     int  	      	myOpcode, hisOpcode;
     int	 	      	found, i, j;
-    char	      	*myAuthName, **hisAuthNames = NULL;
+    char	      	**hisAuthNames = NULL;
     char 	      	*protocolName;
     char 		*pData, *pStart, *pEnd;
     char 	      	*vendor = NULL;
@@ -2009,7 +2009,8 @@ ProcessProtocolSetup (
 
     _IceGetPaValidAuthIndices (
 	_IceProtocols[myOpcode - 1].protocol_name,
-	iceConn->connection_string, myAuthCount, myProtocol->auth_names,
+	iceConn->connection_string, myAuthCount,
+	(const char **) myProtocol->auth_names,
         &authUsableCount, authIndices);
 
     for (i = 0; i < myAuthCount; i++)
@@ -2023,7 +2024,7 @@ ProcessProtocolSetup (
     {
 	if (authUsableFlags[i])
 	{
-	    myAuthName = myProtocol->auth_names[i];
+	    const char *myAuthName = myProtocol->auth_names[i];
 
 	    for (j = 0; j < hisAuthCount && !found; j++)
 		if (strcmp (myAuthName, hisAuthNames[j]) == 0)

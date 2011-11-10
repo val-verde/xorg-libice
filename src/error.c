@@ -364,7 +364,8 @@ _IceDefaultErrorHandler (
 	IcePointer	values
 )
 {
-    char *str;
+    const char *str;
+    char *estr;
     char *pData = (char *) values;
 
     switch (offendingMinorOpcode)
@@ -512,42 +513,42 @@ _IceDefaultErrorHandler (
 
         case IceSetupFailed:
 
-	    EXTRACT_STRING (pData, swap, str);
-	    fprintf (stderr, "Reason : %s\n", str);
-	    free(str);
+            EXTRACT_STRING (pData, swap, estr);
+            fprintf (stderr, "Reason : %s\n", estr);
+            free(estr);
             break;
 
         case IceAuthRejected:
 
-	    EXTRACT_STRING (pData, swap, str);
-	    fprintf (stderr, "Reason : %s\n", str);
-	    free(str);
+            EXTRACT_STRING (pData, swap, estr);
+            fprintf (stderr, "Reason : %s\n", estr);
+            free(estr);
             break;
 
         case IceAuthFailed:
 
-	    EXTRACT_STRING (pData, swap, str);
-	    fprintf (stderr, "Reason : %s\n", str);
-	    free(str);
+            EXTRACT_STRING (pData, swap, estr);
+            fprintf (stderr, "Reason : %s\n", estr);
+            free(estr);
             break;
 
         case IceProtocolDuplicate:
 
-	    EXTRACT_STRING (pData, swap, str);
-	    fprintf (stderr, "Protocol name : %s\n", str);
-	    free(str);
+            EXTRACT_STRING (pData, swap, estr);
+            fprintf (stderr, "Protocol name : %s\n", estr);
+            free(estr);
             break;
 
         case IceMajorOpcodeDuplicate:
 
-	    fprintf (stderr, "Major opcode : %d\n", (int) *pData);
+            fprintf (stderr, "Major opcode : %d\n", (int) *pData);
             break;
 
         case IceUnknownProtocol:
 
-	    EXTRACT_STRING (pData, swap, str);
-	    fprintf (stderr, "Protocol name : %s\n", str);
-	    free(str);
+            EXTRACT_STRING (pData, swap, estr);
+            fprintf (stderr, "Protocol name : %s\n", estr);
+            free(estr);
             break;
 
 	default:

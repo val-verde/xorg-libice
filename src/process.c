@@ -650,8 +650,8 @@ ProcessError (
 	    _IceConnectionError *errorReply =
 	        &(((_IceReply *) (replyWait->reply))->connection_error);
 	    char *errorStr = NULL;
-	    const char *tempstr;
-	    char *prefix, *temp;
+	    const char *tempstr, *prefix;
+	    char *temp;
 
 	    invokeHandler = 0;
 	    errorReturned = True;
@@ -716,7 +716,8 @@ ProcessError (
 	    _IceProtocolError *errorReply =
 	        &(((_IceReply *) (replyWait->reply))->protocol_error);
 	    char *errorStr = "";
-	    char *prefix, *temp;
+	    const char *prefix;
+	    char *temp;
 
 	    invokeHandler = 0;
 	    errorReturned = True;
@@ -725,16 +726,15 @@ ProcessError (
 	    {
 	    case IceNoVersion:
 
-	        temp =
-		    "None of the protocol versions specified are supported";
-		errorStr = strdup(temp);
+		errorStr = strdup(
+		    "None of the protocol versions specified are supported");
 		break;
 
 	    case IceNoAuth:
 
-		temp =
-		    "None of the authentication protocols specified are supported";
-		errorStr = strdup(temp);
+		errorStr = strdup(
+		    "None of the authentication protocols specified are supported");
+
 		break;
 
 	    case IceSetupFailed:
@@ -1246,7 +1246,8 @@ ProcessAuthRequired (
     }
     else if (status == IcePoAuthRejected || status == IcePoAuthFailed)
     {
-	char *prefix, *returnErrorString;
+	const char *prefix;
+	char *returnErrorString;
 
 	if (status == IcePoAuthRejected)
 	{
@@ -1672,7 +1673,8 @@ ProcessAuthNextPhase (
     }
     else if (status == IcePoAuthRejected || status == IcePoAuthFailed)
     {
-	char *prefix = NULL, *returnErrorString;
+	const char *prefix = NULL;
+	char *returnErrorString;
 
 	if (status == IcePoAuthRejected)
 	{

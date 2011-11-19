@@ -208,16 +208,15 @@ function should be called for the client that initiates a
 <funcsynopsis id='IceRegisterForProtocolSetup'>
 <funcprototype>
   <funcdef>int <function>IceRegisterForProtocolSetup</function></funcdef>
-    <paramdef>char<parameter> *protocol_name</parameter></paramdef>
-    <paramdef>char<parameter> *vendor</parameter></paramdef>
-    <paramdef>char<parameter> *release</parameter></paramdef>
-    <paramdef>int<parameter> *version_count</parameter></paramdef>
-    <paramdef>int<parameter> *version_count</parameter></paramdef>
+    <paramdef>const char<parameter> *protocol_name</parameter></paramdef>
+    <paramdef>const char<parameter> *vendor</parameter></paramdef>
+    <paramdef>const char<parameter> *release</parameter></paramdef>
+    <paramdef>int<parameter> version_count</parameter></paramdef>
     <paramdef>IcePoVersionRec<parameter> *version_recs</parameter></paramdef>
-    <paramdef>int<parameter> auth_names</parameter></paramdef>
+    <paramdef>int<parameter> auth_count</parameter></paramdef>
     <paramdef>char<parameter> **auth_names</parameter></paramdef>
     <paramdef>IcePoAuthProc<parameter> *auth_procs</parameter></paramdef>
-    <paramdef>IceIOErrorProc<parameter> *io_error_proc</parameter></paramdef>
+    <paramdef>IceIOErrorProc<parameter> io_error_proc</parameter></paramdef>
 </funcprototype>
 </funcsynopsis>
 
@@ -351,7 +350,18 @@ with a
 <funcsynopsis id='IceRegisterForProtocolReply'>
 <funcprototype>
   <funcdef>Bool <function>IceRegisterForProtocolReply</function></funcdef>
-    <paramdef>char<parameter> *host_name</parameter></paramdef>
+    <paramdef>const char<parameter> *protocol_name</parameter></paramdef>
+    <paramdef>const char<parameter> *vendor</parameter></paramdef>
+    <paramdef>const char<parameter> *release</parameter></paramdef>
+    <paramdef>int<parameter> version_count</parameter></paramdef>
+    <paramdef>IcePoVersionRec<parameter> *version_recs</parameter></paramdef>
+    <paramdef>int<parameter> auth_count</parameter></paramdef>
+    <paramdef>const char<parameter> **auth_names</parameter></paramdef>
+    <paramdef>IcePoAuthProc<parameter> *auth_procs</parameter></paramdef>
+    <paramdef>IceHostBasedAuthProc<parameter> host_based_auth_proc</parameter></paramdef>
+    <paramdef>IceProtocolSetupProc<parameter> protocol_setup_proc</parameter></paramdef>
+    <paramdef>IceProtocolActivateProc<parameter> protocol_activate_proc</parameter></paramdef>
+    <paramdef>IceIOErrorProc<parameter> io_error_proc</parameter></paramdef>
 </funcprototype>
 </funcsynopsis>
 

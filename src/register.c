@@ -34,9 +34,9 @@ Author: Ralph Mor, X Consortium
 
 int
 IceRegisterForProtocolSetup (
-	char			*protocolName,
-	char			*vendor,
-	char			*release,
+	const char		*protocolName,
+	const char		*vendor,
+	const char		*release,
 	int			versionCount,
 	IcePoVersionRec		*versionRecs,
 	int			authCount,
@@ -131,9 +131,9 @@ IceRegisterForProtocolSetup (
 
 int
 IceRegisterForProtocolReply (
-	char				*protocolName,
-	char				*vendor,
-	char				*release,
+	const char			*protocolName,
+	const char			*vendor,
+	const char			*release,
 	int				versionCount,
 	IcePaVersionRec			*versionRecs,
 	int				authCount,

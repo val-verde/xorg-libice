@@ -1071,6 +1071,11 @@ ProcessConnectionSetup (
 	{
 	    accept_setup_now = 1;
 	}
+	else
+	{
+	    free (vendor);
+	    free (release);
+	}
 
 	if (authData && authDataLen > 0)
 	    free ((char *) authData);

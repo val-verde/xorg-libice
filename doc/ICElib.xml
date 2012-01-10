@@ -1278,26 +1278,23 @@ that fails, an attempt will be made using the second network ID, and so on.
 Each network ID has the following format:
 </para>
 
-<informaltable pgwide='0' frame='none'>
-  <tgroup cols='3' align='center'>
-    <colspec colname='c1'/>
-    <colspec colname='c2'/>
-    <colspec colname='c3'/>
+<informaltable frame='none'>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+    <colspec colname='c1' colwidth='1.0*'/>
+    <colspec colname='c2' colwidth='2.0*'/>
     <tbody>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>tcp/&lt;hostname&gt;:&lt;portnumber&gt;</entry>
-        <entry align='left'>or</entry>
+        <entry>tcp/&lt;hostname&gt;:&lt;portnumber&gt;</entry>
+        <entry>or</entry>
       </row>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>decnet/&lt;hostname&gt;::&lt;objname&gt;</entry>
-        <entry align='left'>or</entry>
+        <entry>decnet/&lt;hostname&gt;::&lt;objname&gt;</entry>
+        <entry>or</entry>
       </row>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>local/&lt;hostname&gt;:&lt;path&gt;</entry>
-        <entry align='left'></entry>
+        <entry>local/&lt;hostname&gt;:&lt;path&gt;</entry>
+        <entry></entry>
       </row>
     </tbody>
   </tgroup>
@@ -1567,26 +1564,23 @@ To obtain the network ID string associated with a listen object, use
 
 <para>A network ID has the following format:</para>
 
-<informaltable pgwide='0' frame='none'>
-  <tgroup cols='3' align='center'>
-    <colspec colname='c1'/>
-    <colspec colname='c2'/>
-    <colspec colname='c3'/>
+<informaltable frame='none'>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+    <colspec colname='c1' colwidth='1.0*'/>
+    <colspec colname='c2' colwidth='2.0*'/>
     <tbody>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>tcp/&lt;hostname&gt;:&lt;portnumber&gt;</entry>
-        <entry align='left'>or</entry>
+        <entry>tcp/&lt;hostname&gt;:&lt;portnumber&gt;</entry>
+        <entry>or</entry>
       </row>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>decnet/&lt;hostname&gt;::&lt;objname&gt;</entry>
-        <entry align='left'>or</entry>
+        <entry>decnet/&lt;hostname&gt;::&lt;objname&gt;</entry>
+        <entry>or</entry>
       </row>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>local/&lt;hostname&gt;:&lt;path&gt;</entry>
-        <entry align='left'></entry>
+        <entry>local/&lt;hostname&gt;:&lt;path&gt;</entry>
+        <entry></entry>
       </row>
     </tbody>
   </tgroup>
@@ -3086,26 +3080,27 @@ See the <emphasis remap='I'>Inter-Client Exchange Protocol</emphasis>
 standard for more details.
 </para>
 
-<informaltable pgwide='0' frame='none'>
-  <tgroup cols='2' align='center'>
-    <colspec colname='c1'/>
-    <colspec colname='c2'/>
+<informaltable frame='none'>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+    <colspec colname='c1' colwidth='1.0*'/>
+    <colspec colname='c2' colwidth='2.0*'/>
     <tbody>
       <row>
-        <entry align='left'>IceBadMinor</entry>
-        <entry align='left'>0x8000</entry>
+        <entry>IceBadMinor</entry>
+        <entry>0x8000</entry>
       </row>
       <row>
-        <entry align='left'>IceBadState</entry>
-        <entry align='left'>0x8001</entry>
+        <entry>IceBadState</entry>
+        <entry>0x8001</entry>
       </row>
       <row>
-        <entry align='left'>IceBadLength</entry>
-        <entry align='left'>0x8002</entry>
+        <entry>IceBadLength</entry>
+        <entry>0x8002</entry>
       </row>
       <row>
-        <entry align='left'>IceBadValue</entry>
-        <entry align='left'>0x8003</entry>
+        <entry>IceBadValue</entry>
+        <entry>0x8003</entry>
       </row>
     </tbody>
   </tgroup>
@@ -4236,26 +4231,23 @@ authentication (for example, the network ID of a session manager).
 A network ID has the following form:
 </para>
 
-<informaltable pgwide='0' frame='none'>
-  <tgroup cols='3' align='center'>
-    <colspec colname='c1'/>
-    <colspec colname='c2'/>
-    <colspec colname='c3'/>
+<informaltable frame='none'>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+    <colspec colname='c1' colwidth='1.0*'/>
+    <colspec colname='c2' colwidth='2.0*'/>
     <tbody>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>tcp/&lt;hostname&gt;:&lt;portnumber&gt;</entry>
-        <entry align='left'>or</entry>
+        <entry>tcp/&lt;hostname&gt;:&lt;portnumber&gt;</entry>
+        <entry>or</entry>
       </row>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>decnet/&lt;hostname&gt;::&lt;objname&gt;</entry>
-        <entry align='left'>or</entry>
+        <entry>decnet/&lt;hostname&gt;::&lt;objname&gt;</entry>
+        <entry>or</entry>
       </row>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>local/&lt;hostname&gt;:&lt;path&gt;</entry>
-        <entry align='left'></entry>
+        <entry>local/&lt;hostname&gt;:&lt;path&gt;</entry>
+        <entry></entry>
       </row>
     </tbody>
   </tgroup>

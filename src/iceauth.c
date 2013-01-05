@@ -67,9 +67,7 @@ IceGenerateMagicCookie (
     }
 #else
     {
-#ifndef __UNIXOS2__
 	long    time ();
-#endif
 	ldata[0] = time ((long *) 0);
 	ldata[1] = getpid ();
     }

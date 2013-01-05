@@ -50,11 +50,7 @@ Author: Ralph Mor, X Consortium
  */
 
 int		 _IcePaAuthDataEntryCount = 0;
-#ifndef __UNIXOS2__
 IceAuthDataEntry _IcePaAuthDataEntries[ICE_MAX_AUTH_DATA_ENTRIES];
-#else
-IceAuthDataEntry _IcePaAuthDataEntries[ICE_MAX_AUTH_DATA_ENTRIES] = {0};
-#endif
 
 
 void

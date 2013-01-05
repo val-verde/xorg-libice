@@ -38,10 +38,6 @@ Author: Ralph Mor, X Consortium
 
 #include <time.h>
 #define Time_t time_t
-#ifdef __UNIXOS2__
-extern char* getenv(const char*);
-#define link rename
-#endif
 #ifndef X_NOT_POSIX
 #include <unistd.h>
 #else
@@ -75,7 +71,7 @@ IceAuthFileName (void)
     static char	*buf;
     static int	bsize;
     int	    	size;
-#if defined(WIN32) || defined(__UNIXOS2__)
+#ifdef WIN32
 #ifndef PATH_MAX
 #define PATH_MAX 512
 #endif
@@ -106,11 +102,6 @@ IceAuthFileName (void)
 	name = dir;
     }
     if (!name)
-#endif
-#ifdef __UNIXOS2__
-	strcpy (dir,"c:");
-	name = dir;
-	if (!name)
 #endif
 	return (NULL);
     }

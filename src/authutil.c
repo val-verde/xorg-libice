@@ -128,7 +128,7 @@ IceAuthFileName (void)
 
 int
 IceLockAuthFile (
-	char	*file_name,
+	const char *file_name,
 	int	retries,
 	int	timeout,
 	long	dead
@@ -204,7 +204,7 @@ IceLockAuthFile (
 
 void
 IceUnlockAuthFile (
-	char	*file_name
+	const char	*file_name
 )
 {
 #ifndef WIN32

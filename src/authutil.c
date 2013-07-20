@@ -119,8 +119,8 @@ IceAuthFileName (void)
 	bsize = size;
     }
 
-    strcpy (buf, name);
-    strcat (buf, slashDotICEauthority + (name[1] == '\0' ? 1 : 0));
+    snprintf (buf, bsize, "%s%s", name,
+              slashDotICEauthority + (name[1] == '\0' ? 1 : 0));
 
     return (buf);
 }
@@ -143,10 +143,8 @@ IceLockAuthFile (
     if ((int) strlen (file_name) > 1022)
 	return (IceAuthLockError);
 
-    strcpy (creat_name, file_name);
-    strcat (creat_name, "-c");
-    strcpy (link_name, file_name);
-    strcat (link_name, "-l");
+    snprintf (creat_name, sizeof(creat_name), "%s-c", file_name);
+    snprintf (link_name, sizeof(link_name), "%s-l", file_name);
 
     if (stat (creat_name, &statb) != -1)
     {
@@ -217,15 +215,10 @@ IceUnlockAuthFile (
 	return;
 
 #ifndef WIN32
-    strcpy (creat_name, file_name);
-    strcat (creat_name, "-c");
-#endif
-    strcpy (link_name, file_name);
-    strcat (link_name, "-l");
-
-#ifndef WIN32
+    snprintf (creat_name, sizeof(creat_name), "%s-c", file_name);
     unlink (creat_name);
 #endif
+    snprintf (link_name, sizeof(link_name), "%s-l", file_name);
     unlink (link_name);
 }
 

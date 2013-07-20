@@ -451,9 +451,9 @@ ConnectToPeer (char *networkIdsList, char **actualConnectionRet)
     char* address;
     char *ptr, *endptr, *delim;
     int  madeConnection = 0;
-    int  len, retry;
-    int  connect_stat;
-    int  address_size;
+    size_t  len;
+    int  retry, connect_stat;
+    size_t  address_size;
     XtransConnInfo trans_conn = NULL;
 
     *actualConnectionRet = NULL;

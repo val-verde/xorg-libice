@@ -35,6 +35,7 @@ Author: Ralph Mor, X Consortium
 #include <X11/Xos.h>
 #include <sys/stat.h>
 #include <errno.h>
+#include <limits.h>
 
 #include <time.h>
 #define Time_t time_t
@@ -69,8 +70,8 @@ IceAuthFileName (void)
     static char slashDotICEauthority[] = "/.ICEauthority";
     char    	*name;
     static char	*buf;
-    static int	bsize;
-    int	    	size;
+    static size_t bsize;
+    size_t    	size;
 #ifdef WIN32
 #ifndef PATH_MAX
 #define PATH_MAX 512
@@ -112,7 +113,7 @@ IceAuthFileName (void)
     {
 	if (buf)
 	    free (buf);
-	buf = malloc ((unsigned) size);
+	buf = malloc (size);
 	if (!buf)
 	    return (NULL);
 	bsize = size;
@@ -378,7 +379,7 @@ read_short (FILE *file, unsigned short *shortp)
 {
     unsigned char   file_short[2];
 
-    if (fread ((char *) file_short, (int) sizeof (file_short), 1, file) != 1)
+    if (fread (file_short, sizeof (file_short), 1, file) != 1)
 	return (0);
 
     *shortp = file_short[0] * 256 + file_short[1];
@@ -403,7 +404,7 @@ read_string (FILE *file, char **stringp)
 
     if (len != 0)
     {
-	if (fread (data, (int) sizeof (char), (int) len, file) != len)
+	if (fread (data, sizeof (char), len, file) != len)
 	{
 	    free (data);
 	    return (0);
@@ -438,7 +439,7 @@ read_counted_string (FILE *file, unsigned short	*countp, char **stringp)
     	if (!data)
 	    return (0);
 
-    	if (fread (data, (int) sizeof (char), (int) len, file) != len)
+	if (fread (data, sizeof (char), len, file) != len)
 	{
 	    free (data);
 	    return (0);
@@ -460,7 +461,7 @@ write_short (FILE *file, unsigned short s)
     file_short[0] = (s & (unsigned) 0xff00) >> 8;
     file_short[1] = s & 0xff;
 
-    if (fwrite ((char *) file_short, (int) sizeof (file_short), 1, file) != 1)
+    if (fwrite (file_short, sizeof (file_short), 1, file) != 1)
 	return (0);
 
     return (1);
@@ -470,12 +471,15 @@ write_short (FILE *file, unsigned short s)
 static Status
 write_string (FILE *file, char *string)
 {
-    unsigned short count = strlen (string);
+    size_t count = strlen (string);
 
-    if (!write_short (file, count))
+    if (count > USHRT_MAX)
 	return (0);
 
-    if (fwrite (string, (int) sizeof (char), (int) count, file) != count)
+    if (!write_short (file, (unsigned short) count))
+	return (0);
+
+    if (fwrite (string, sizeof (char), count, file) != count)
 	return (0);
 
     return (1);
@@ -488,7 +492,7 @@ write_counted_string (FILE *file, unsigned short count, char *string)
     if (!write_short (file, count))
 	return (0);
 
-    if (fwrite (string, (int) sizeof (char), (int) count, file) != count)
+    if (fwrite (string, sizeof (char), count, file) != count)
 	return (0);
 
     return (1);

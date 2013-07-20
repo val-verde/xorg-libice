@@ -58,7 +58,7 @@ Author: Ralph Mor, X Consortium
 
 #define PAD64(_bytes) ((8 - ((unsigned int) (_bytes) % 8)) % 8)
 
-#define PADDED_BYTES64(_bytes) (_bytes + PAD64 (_bytes))
+#define PADDED_BYTES64(_bytes) ((unsigned int) _bytes + PAD64 (_bytes))
 
 
 /*
@@ -67,7 +67,7 @@ Author: Ralph Mor, X Consortium
 
 #define PAD32(_bytes) ((4 - ((unsigned int) (_bytes) % 4)) % 4)
 
-#define PADDED_BYTES32(_bytes) (_bytes + PAD32 (_bytes))
+#define PADDED_BYTES32(_bytes) ((unsigned int) _bytes + PAD32 (_bytes))
 
 
 /*

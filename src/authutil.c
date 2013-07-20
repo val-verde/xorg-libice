@@ -99,7 +99,7 @@ IceAuthFileName (void)
 	len2 = strlen (ptr2);
     }
     if ((len1 + len2 + 1) < PATH_MAX) {
-	sprintf (dir, "%s%s", ptr1, (ptr2) ? ptr2 : "");
+	snprintf (dir, sizeof(dir), "%s%s", ptr1, (ptr2) ? ptr2 : "");
 	name = dir;
     }
     if (!name)

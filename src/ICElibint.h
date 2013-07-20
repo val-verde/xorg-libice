@@ -155,8 +155,6 @@ typedef struct {
     _pBuf += 1; \
 }
 
-#ifndef WORD64
-
 #define STORE_CARD16(_pBuf, _val) \
 { \
     *((CARD16 *) _pBuf) = _val; \
@@ -169,30 +167,6 @@ typedef struct {
     _pBuf += 4; \
 }
 
-#else /* WORD64 */
-
-#define STORE_CARD16(_pBuf, _val) \
-{ \
-    struct { \
-        int value   :16; \
-        int pad     :16; \
-    } _d; \
-    _d.value = _val; \
-    memcpy (_pBuf, &_d, 2); \
-    _pBuf += 2; \
-}
-
-#define STORE_CARD32(_pBuf, _val) \
-{ \
-    struct { \
-        int value   :32; \
-    } _d; \
-    _d.value = _val; \
-    memcpy (_pBuf, &_d, 4); \
-    _pBuf += 4; \
-}
-
-#endif /* WORD64 */
 
 #define STORE_STRING(_pBuf, _string) \
 { \
@@ -215,8 +189,6 @@ typedef struct {
     _pBuf += 1; \
 }
 
-#ifndef WORD64
-
 #define EXTRACT_CARD16(_pBuf, _swap, _val) \
 { \
     _val = *((CARD16 *) _pBuf); \
@@ -233,33 +205,6 @@ typedef struct {
         _val = lswapl (_val); \
 }
 
-#else /* WORD64 */
-
-#define EXTRACT_CARD16(_pBuf, _swap, _val) \
-{ \
-    _val = *(_pBuf + 0) & 0xff; 	/* 0xff incase _pBuf is signed */ \
-    _val <<= 8; \
-    _val |= *(_pBuf + 1) & 0xff;\
-    _pBuf += 2; \
-    if (_swap) \
-        _val = lswaps (_val); \
-}
-
-#define EXTRACT_CARD32(_pBuf, _swap, _val) \
-{ \
-    _val = *(_pBuf + 0) & 0xff; 	/* 0xff incase _pBuf is signed */ \
-    _val <<= 8; \
-    _val |= *(_pBuf + 1) & 0xff;\
-    _val <<= 8; \
-    _val |= *(_pBuf + 2) & 0xff;\
-    _val <<= 8; \
-    _val |= *(_pBuf + 3) & 0xff;\
-    _pBuf += 4; \
-    if (_swap) \
-        _val = lswapl (_val); \
-}
-
-#endif /* WORD64 */
 
 #define EXTRACT_STRING(_pBuf, _swap, _string) \
 { \

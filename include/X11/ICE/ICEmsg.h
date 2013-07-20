@@ -186,19 +186,11 @@ extern IcePaAuthStatus _IcePaMagicCookie1Proc (
     } \
 }
 
-#ifndef WORD64
-
 #define IceWriteData16(_iceConn, _bytes, _data) \
     IceWriteData (_iceConn, _bytes, (char *) _data)
 
 #define IceWriteData32(_iceConn, _bytes, _data) \
     IceWriteData (_iceConn, _bytes, (char *) _data)
-
-#else /* WORD64 */
-
-/* IceWriteData16 and IceWriteData32 defined in misc.c for WORD64 */
-
-#endif /* WORD64 */
 
 
 /*
@@ -281,8 +273,6 @@ extern IcePaAuthStatus _IcePaMagicCookie1Proc (
 #define IceReadData(_iceConn, _bytes, _pData) \
     _IceRead (_iceConn, (unsigned long) (_bytes), (char *) _pData); \
 
-#ifndef WORD64
-
 #define IceReadData16(_iceConn, _swap, _bytes, _pData) \
 { \
     _IceRead (_iceConn, (unsigned long) (_bytes), (char *) _pData); \
@@ -292,12 +282,6 @@ extern IcePaAuthStatus _IcePaMagicCookie1Proc (
 { \
     _IceRead (_iceConn, (unsigned long) (_bytes), (char *) _pData); \
 }
-
-#else /* WORD64 */
-
-/* IceReadData16 and IceReadData32 defined in misc.c for WORD64 */
-
-#endif /* WORD64 */
 
 
 /*

@@ -469,13 +469,7 @@ write_string (FILE *file, const char *string)
     if (count > USHRT_MAX)
 	return (0);
 
-    if (!write_short (file, (unsigned short) count))
-	return (0);
-
-    if (fwrite (string, sizeof (char), count, file) != count)
-	return (0);
-
-    return (1);
+    return write_counted_string (file, (unsigned short) count, string);
 }
 
 

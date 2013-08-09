@@ -70,7 +70,7 @@ IceAcceptConnection (
      * Create an ICE object for this connection.
      */
 
-    if ((iceConn = (IceConn) malloc (sizeof (struct _IceConn))) == NULL)
+    if ((iceConn = malloc (sizeof (struct _IceConn))) == NULL)
     {
 	_IceTransClose (newconn);
 	*statusRet = IceAcceptBadMalloc;
@@ -103,8 +103,7 @@ IceAcceptConnection (
     iceConn->vendor = NULL;
     iceConn->release = NULL;
 
-    if ((iceConn->inbuf = iceConn->inbufptr =
-	(char *) malloc (ICE_INBUFSIZE)) != NULL)
+    if ((iceConn->inbuf = iceConn->inbufptr = malloc (ICE_INBUFSIZE)) != NULL)
     {
 	iceConn->inbufmax = iceConn->inbuf + ICE_INBUFSIZE;
     }
@@ -116,8 +115,7 @@ IceAcceptConnection (
 	return (NULL);
     }
 
-    if ((iceConn->outbuf = iceConn->outbufptr =
-	(char *) malloc (ICE_OUTBUFSIZE)) != NULL)
+    if ((iceConn->outbuf = iceConn->outbufptr = malloc (ICE_OUTBUFSIZE)) != NULL)
     {
 	iceConn->outbufmax = iceConn->outbuf + ICE_OUTBUFSIZE;
     }

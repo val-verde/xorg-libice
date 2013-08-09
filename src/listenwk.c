@@ -64,8 +64,7 @@ IceListenForWellKnownConnections (
 	return (0);
     }
 
-    if ((listenObjs = (struct _IceListenObj *) malloc (
-	transCount * sizeof (struct _IceListenObj))) == NULL)
+    if ((listenObjs = malloc (transCount * sizeof (struct _IceListenObj))) == NULL)
     {
 	for (i = 0; i < transCount; i++)
 	    _IceTransClose (transConns[i]);
@@ -99,8 +98,7 @@ IceListenForWellKnownConnections (
     }
     else
     {
-	*listenObjsRet = (IceListenObj *) malloc (
-	    *countRet * sizeof (IceListenObj));
+	*listenObjsRet = malloc (*countRet * sizeof (IceListenObj));
 
 	if (*listenObjsRet == NULL)
 	{
@@ -112,8 +110,7 @@ IceListenForWellKnownConnections (
 	{
 	    for (i = 0; i < *countRet; i++)
 	    {
-		(*listenObjsRet)[i] = (IceListenObj) malloc (
-		    sizeof (struct _IceListenObj));
+		(*listenObjsRet)[i] = malloc (sizeof (struct _IceListenObj));
 
 		if ((*listenObjsRet)[i] == NULL)
 		{

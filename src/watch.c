@@ -48,8 +48,7 @@ IceAddConnectionWatch (
     _IceWatchProc	*newWatchProc;
     int			i;
 
-    if ((newWatchProc = (_IceWatchProc *) malloc (
-	sizeof (_IceWatchProc))) == NULL)
+    if ((newWatchProc = malloc (sizeof (_IceWatchProc))) == NULL)
     {
 	return (0);
     }
@@ -74,7 +73,7 @@ IceAddConnectionWatch (
 
     for (i = 0; i < _IceConnectionCount; i++)
     {
-	_IceWatchedConnection *newWatchedConn = (_IceWatchedConnection *)
+	_IceWatchedConnection *newWatchedConn =
 	    malloc (sizeof (_IceWatchedConnection));
 
 	newWatchedConn->iceConn = _IceConnectionObjs[i];
@@ -140,7 +139,7 @@ _IceConnectionOpened (
 
     while (watchProc)
     {
-	_IceWatchedConnection *newWatchedConn = (_IceWatchedConnection *)
+	_IceWatchedConnection *newWatchedConn =
 	    malloc (sizeof (_IceWatchedConnection));
 	_IceWatchedConnection *watchedConn;
 

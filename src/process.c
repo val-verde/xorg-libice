@@ -921,7 +921,7 @@ ProcessConnectionSetup (
 
     if ((hisAuthCount = message->authCount) > 0)
     {
-	hisAuthNames = (char **) malloc (hisAuthCount * sizeof (char *));
+	hisAuthNames = malloc (hisAuthCount * sizeof (char *));
 	EXTRACT_LISTOF_STRING (pData, swap, hisAuthCount, hisAuthNames);
     }
 
@@ -1056,7 +1056,7 @@ ProcessConnectionSetup (
 
 	    AuthRequired (iceConn, hisAuthIndex, authDataLen, authData);
 
-	    iceConn->connect_to_me = setupInfo = (_IceConnectToMeInfo *)
+	    iceConn->connect_to_me = setupInfo =
 		malloc (sizeof (_IceConnectToMeInfo));
 
 	    setupInfo->my_version_index = myVersionIndex;
@@ -1967,7 +1967,7 @@ ProcessProtocolSetup (
 
     if ((hisAuthCount = message->authCount) > 0)
     {
-	hisAuthNames = (char **) malloc (hisAuthCount * sizeof (char *));
+	hisAuthNames = malloc (hisAuthCount * sizeof (char *));
 	EXTRACT_LISTOF_STRING (pData, swap, hisAuthCount, hisAuthNames);
     }
 
@@ -2097,8 +2097,7 @@ ProcessProtocolSetup (
 	    AuthRequired (iceConn, hisAuthIndex, authDataLen, authData);
 
 	    iceConn->protosetup_to_me = setupInfo =
-		(_IceProtoSetupToMeInfo *) malloc (
-		sizeof (_IceProtoSetupToMeInfo));
+		malloc (sizeof (_IceProtoSetupToMeInfo));
 
 	    setupInfo->his_opcode = hisOpcode;
 	    setupInfo->my_opcode = myOpcode;

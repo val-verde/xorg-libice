@@ -57,7 +57,7 @@ IceAllocScratch (
 	if (iceConn->scratch)
 	    free (iceConn->scratch);
 
-	iceConn->scratch = (char *) malloc ((unsigned) size);
+	iceConn->scratch = malloc (size);
 	iceConn->scratch_size = size;
     }
 
@@ -421,8 +421,7 @@ _IceAddOpcodeMapping (
     }
     else if (iceConn->process_msg_info == NULL)
     {
-	iceConn->process_msg_info = (_IceProcessMsgInfo *) malloc (
-	    sizeof (_IceProcessMsgInfo));
+	iceConn->process_msg_info = malloc (sizeof (_IceProcessMsgInfo));
 	iceConn->his_min_opcode = iceConn->his_max_opcode = hisOpcode;
     }
     else if (hisOpcode < iceConn->his_min_opcode)
@@ -432,7 +431,7 @@ _IceAddOpcodeMapping (
 	int newsize = iceConn->his_max_opcode - hisOpcode + 1;
 	int i;
 
-	iceConn->process_msg_info = (_IceProcessMsgInfo *) malloc (
+	iceConn->process_msg_info = malloc (
 	    newsize * sizeof (_IceProcessMsgInfo));
 
 	memcpy (&iceConn->process_msg_info[
@@ -459,7 +458,7 @@ _IceAddOpcodeMapping (
 	int newsize = hisOpcode - iceConn->his_min_opcode + 1;
 	int i;
 
-	iceConn->process_msg_info = (_IceProcessMsgInfo *) malloc (
+	iceConn->process_msg_info = malloc (
 	    newsize * sizeof (_IceProcessMsgInfo));
 
 	memcpy (iceConn->process_msg_info, oldVec,

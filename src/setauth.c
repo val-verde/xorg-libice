@@ -100,7 +100,7 @@ IceSetPaAuthData (
 
 	_IcePaAuthDataEntries[j].auth_data_length =
             entries[i].auth_data_length;
-	_IcePaAuthDataEntries[j].auth_data = (char *) malloc (
+	_IcePaAuthDataEntries[j].auth_data = malloc (
             entries[i].auth_data_length);
 	memcpy (_IcePaAuthDataEntries[j].auth_data,
             entries[i].auth_data, entries[i].auth_data_length);

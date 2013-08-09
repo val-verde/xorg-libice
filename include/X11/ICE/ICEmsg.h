@@ -244,7 +244,7 @@ extern IcePaAuthStatus _IcePaMagicCookie1Proc (
     } \
     else \
     { \
-	_pData = (char *) malloc ((unsigned) _bytes); \
+	_pData = malloc (_bytes); \
         if (_pData) \
 	    _IceRead (_iceConn, _bytes, _pData); \
         else \

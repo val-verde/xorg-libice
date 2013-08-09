@@ -112,7 +112,7 @@ IceProtocolSetup (
 
     if (myProtocol->orig_client->auth_count > 0)
     {
-	authIndices = (int *) malloc (
+	authIndices = malloc (
 	    myProtocol->orig_client->auth_count * sizeof (int));
 
 	_IceGetPoValidAuthIndices (myProtocol->protocol_name,
@@ -181,8 +181,7 @@ IceProtocolSetup (
     replyWait.minor_opcode_of_request = ICE_ProtocolSetup;
     replyWait.reply = (IcePointer) &reply;
 
-    iceConn->protosetup_to_you = (_IceProtoSetupToYouInfo *) malloc (
-	sizeof (_IceProtoSetupToYouInfo));
+    iceConn->protosetup_to_you = malloc (sizeof (_IceProtoSetupToYouInfo));
     iceConn->protosetup_to_you->my_opcode = myOpcode;
     iceConn->protosetup_to_you->my_auth_count = authCount;
     iceConn->protosetup_to_you->auth_active = 0;

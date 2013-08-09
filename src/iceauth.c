@@ -55,7 +55,7 @@ IceGenerateMagicCookie (
     int	    value;
     int	    i;
 
-    if ((auth = (char *) malloc (len + 1)) == NULL)
+    if ((auth = malloc (len + 1)) == NULL)
 	return (NULL);
 
 #ifdef ITIMER_REAL

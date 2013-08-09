@@ -255,7 +255,7 @@ IceReadAuthFileEntry (
 	&local.auth_data_length, &local.auth_data))
 	goto bad;
 
-    if (!(ret = (IceAuthFileEntry *) malloc (sizeof (IceAuthFileEntry))))
+    if (!(ret = malloc (sizeof (IceAuthFileEntry))))
 	goto bad;
 
     *ret = local;

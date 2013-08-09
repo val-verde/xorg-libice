@@ -144,7 +144,7 @@ IceOpenConnection (
 	}
     }
 
-    if ((iceConn = (IceConn) malloc (sizeof (struct _IceConn))) == NULL)
+    if ((iceConn = malloc (sizeof (struct _IceConn))) == NULL)
     {
 	strncpy (errorStringRet, "Can't malloc", errorLength);
 	return (NULL);
@@ -194,8 +194,7 @@ IceOpenConnection (
     iceConn->connect_to_me = NULL;
     iceConn->protosetup_to_me = NULL;
 
-    if ((iceConn->inbuf = iceConn->inbufptr =
-	(char *) malloc (ICE_INBUFSIZE)) == NULL)
+    if ((iceConn->inbuf = iceConn->inbufptr = malloc (ICE_INBUFSIZE)) == NULL)
     {
 	_IceFreeConnection (iceConn);
 	strncpy (errorStringRet, "Can't malloc", errorLength);
@@ -204,8 +203,7 @@ IceOpenConnection (
 
     iceConn->inbufmax = iceConn->inbuf + ICE_INBUFSIZE;
 
-    if ((iceConn->outbuf = iceConn->outbufptr =
-	(char *) calloc (1, ICE_OUTBUFSIZE)) == NULL)
+    if ((iceConn->outbuf = iceConn->outbufptr = calloc (1, ICE_OUTBUFSIZE)) == NULL)
     {
 	_IceFreeConnection (iceConn);
 	strncpy (errorStringRet, "Can't malloc", errorLength);
@@ -224,8 +222,7 @@ IceOpenConnection (
     iceConn->saved_reply_waits = NULL;
     iceConn->ping_waits = NULL;
 
-    iceConn->connect_to_you = (_IceConnectToYouInfo *) malloc (
-	sizeof (_IceConnectToYouInfo));
+    iceConn->connect_to_you = malloc (sizeof (_IceConnectToYouInfo));
     iceConn->connect_to_you->auth_active = 0;
 
     /*

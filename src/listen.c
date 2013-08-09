@@ -62,8 +62,7 @@ IceListenForConnections (
 	return (0);
     }
 
-    if ((listenObjs = (struct _IceListenObj *) malloc (
-	transCount * sizeof (struct _IceListenObj))) == NULL)
+    if ((listenObjs = malloc (transCount * sizeof (struct _IceListenObj))) == NULL)
     {
 	for (i = 0; i < transCount; i++)
 	    _IceTransClose (transConns[i]);
@@ -99,8 +98,7 @@ IceListenForConnections (
     }
     else
     {
-	*listenObjsRet = (IceListenObj *) malloc (
-	    *countRet * sizeof (IceListenObj));
+	*listenObjsRet = malloc (*countRet * sizeof (IceListenObj));
 
 	if (*listenObjsRet == NULL)
 	{
@@ -112,8 +110,7 @@ IceListenForConnections (
 	{
 	    for (i = 0; i < *countRet; i++)
 	    {
-		(*listenObjsRet)[i] = (IceListenObj) malloc (
-		    sizeof (struct _IceListenObj));
+		(*listenObjsRet)[i] = malloc (sizeof (struct _IceListenObj));
 
 		if ((*listenObjsRet)[i] == NULL)
 		{
@@ -196,7 +193,7 @@ IceComposeNetworkIdList (
     for (i = 0; i < count; i++)
 	len += (strlen (listenObjs[i]->network_id) + 1);
 
-    list = (char *) malloc (len);
+    list = malloc (len);
 
     if (list == NULL)
 	return (NULL);

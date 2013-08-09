@@ -161,10 +161,10 @@ extern IcePaAuthStatus _IcePaMagicCookie1Proc (
     IceGetHeader (_iceConn, _offendingMajorOpcode, ICE_Error, \
 	SIZEOF (iceErrorMsg), iceErrorMsg, _pMsg); \
     _pMsg->length += (_dataLength); \
-    _pMsg->offendingMinorOpcode = _offendingMinorOpcode; \
-    _pMsg->severity = _severity; \
-    _pMsg->offendingSequenceNum = _offendingSequenceNum; \
-    _pMsg->errorClass = _errorClass; \
+    _pMsg->offendingMinorOpcode = (CARD8) _offendingMinorOpcode; \
+    _pMsg->severity = (CARD8) _severity; \
+    _pMsg->offendingSequenceNum = (CARD32) _offendingSequenceNum; \
+    _pMsg->errorClass = (CARD16) _errorClass; \
 }
 
 

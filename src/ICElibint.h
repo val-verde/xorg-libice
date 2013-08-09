@@ -170,7 +170,7 @@ typedef struct {
 
 #define STORE_STRING(_pBuf, _string) \
 { \
-    CARD16 _len = strlen (_string); \
+    CARD16 _len = (CARD16) strlen (_string); \
     STORE_CARD16 (_pBuf, _len); \
     memcpy (_pBuf, _string, _len); \
     _pBuf += _len; \

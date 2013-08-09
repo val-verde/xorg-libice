@@ -53,8 +53,8 @@ static Status read_short (FILE *file, unsigned short *shortp);
 static Status read_string (FILE *file, char **stringp);
 static Status read_counted_string (FILE *file, unsigned short *countp, char **stringp);
 static Status write_short (FILE *file, unsigned short s);
-static Status write_string (FILE *file, char *string);
-static Status write_counted_string (FILE *file, unsigned short count, char *string);
+static Status write_string (FILE *file, const char *string);
+static Status write_counted_string (FILE *file, unsigned short count, const char *string);
 
 
 
@@ -462,7 +462,7 @@ write_short (FILE *file, unsigned short s)
 
 
 static Status
-write_string (FILE *file, char *string)
+write_string (FILE *file, const char *string)
 {
     size_t count = strlen (string);
 
@@ -480,7 +480,7 @@ write_string (FILE *file, char *string)
 
 
 static Status
-write_counted_string (FILE *file, unsigned short count, char *string)
+write_counted_string (FILE *file, unsigned short count, const char *string)
 {
     if (!write_short (file, count))
 	return (0);

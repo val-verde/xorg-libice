@@ -439,7 +439,7 @@ _IceAddOpcodeMapping (
 	    iceConn->his_min_opcode - hisOpcode], oldVec,
 	    oldsize * sizeof (_IceProcessMsgInfo));
 
-	free ((char *) oldVec);
+	free (oldVec);
 
 	for (i = hisOpcode + 1; i < iceConn->his_min_opcode; i++)
 	{
@@ -465,7 +465,7 @@ _IceAddOpcodeMapping (
 	memcpy (iceConn->process_msg_info, oldVec,
 	    oldsize * sizeof (_IceProcessMsgInfo));
 
-	free ((char *) oldVec);
+	free (oldVec);
 
 	for (i = iceConn->his_max_opcode + 1; i < hisOpcode; i++)
 	{

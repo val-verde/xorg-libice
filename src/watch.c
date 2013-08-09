@@ -116,7 +116,7 @@ IceRemoveConnectionWatch (
 	while (watchedConn)
 	{
 	    _IceWatchedConnection *nextWatchedConn = watchedConn->next;
-	    free ((char *) watchedConn);
+	    free (watchedConn);
 	    watchedConn = nextWatchedConn;
 	}
 
@@ -125,7 +125,7 @@ IceRemoveConnectionWatch (
 	else
 	    prevWatchProc->next = nextWatchProc;
 
-	free ((char *) currWatchProc);
+	free (currWatchProc);
     }
 }
 
@@ -193,7 +193,7 @@ _IceConnectionClosed (
 	    else
 		prev->next = watchedConn->next;
 
-	    free ((char *) watchedConn);
+	    free (watchedConn);
 	}
 
 	watchProc = watchProc->next;

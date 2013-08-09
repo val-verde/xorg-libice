@@ -255,7 +255,7 @@ extern IcePaAuthStatus _IcePaMagicCookie1Proc (
 #define IceDisposeCompleteMessage(_iceConn, _pData) \
     if ((char *) _pData < _iceConn->inbuf || \
 	(char *) _pData >= _iceConn->inbufmax) \
-        free ((char *) _pData);
+        free (_pData);
 
 
 #define IceReadSimpleMessage(_iceConn, _msgType, _pMsg) \

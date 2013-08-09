@@ -287,7 +287,7 @@ IceFreeAuthFileEntry (
 	if (auth->network_id) free (auth->network_id);
 	if (auth->auth_name) free (auth->auth_name);
 	if (auth->auth_data) free (auth->auth_data);
-	free ((char *) auth);
+	free (auth);
     }
 }
 

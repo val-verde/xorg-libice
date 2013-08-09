@@ -69,7 +69,7 @@ IceListenForWellKnownConnections (
     {
 	for (i = 0; i < transCount; i++)
 	    _IceTransClose (transConns[i]);
-	free ((char *) transConns);
+	free (transConns);
 	return (0);
     }
 
@@ -120,9 +120,9 @@ IceListenForWellKnownConnections (
 		    strncpy (errorStringRet, "Malloc failed", errorLength);
 
 		    for (j = 0; j < i; j++)
-			free ((char *) (*listenObjsRet)[j]);
+			free ((*listenObjsRet)[j]);
 
-		    free ((char *) *listenObjsRet);
+		    free (*listenObjsRet);
 		    *listenObjsRet = NULL;
 
 		    status = 0;
@@ -152,8 +152,8 @@ IceListenForWellKnownConnections (
 	    _IceTransClose (transConns[i]);
     }
 
-    free ((char *) listenObjs);
-    free ((char *) transConns);
+    free (listenObjs);
+    free (transConns);
 
     return (status);
 }

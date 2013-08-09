@@ -67,7 +67,7 @@ IceListenForConnections (
     {
 	for (i = 0; i < transCount; i++)
 	    _IceTransClose (transConns[i]);
-	free ((char *) transConns);
+	free (transConns);
 	return (0);
     }
 
@@ -120,9 +120,9 @@ IceListenForConnections (
 		    strncpy (errorStringRet, "Malloc failed", errorLength);
 
 		    for (j = 0; j < i; j++)
-			free ((char *) (*listenObjsRet)[j]);
+			free ((*listenObjsRet)[j]);
 
-		    free ((char *) *listenObjsRet);
+		    free (*listenObjsRet);
 		    *listenObjsRet = NULL;
 
 		    status = 0;
@@ -152,8 +152,8 @@ IceListenForConnections (
 	    _IceTransClose (transConns[i]);
     }
 
-    free ((char *) listenObjs);
-    free ((char *) transConns);
+    free (listenObjs);
+    free (transConns);
 
     return (status);
 }
@@ -249,10 +249,10 @@ IceFreeListenObjs (
     {
 	free (listenObjs[i]->network_id);
 	_IceTransClose (listenObjs[i]->trans_conn);
-	free ((char *) listenObjs[i]);
+	free (listenObjs[i]);
     }
 
-    free ((char *) listenObjs);
+    free (listenObjs);
 }
 
 

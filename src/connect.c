@@ -158,7 +158,7 @@ IceOpenConnection (
     if ((iceConn->trans_conn = ConnectToPeer (networkIdsList,
 	&iceConn->connection_string)) == NULL)
     {
-	free ((char *) iceConn);
+	free (iceConn);
 	strncpy (errorStringRet, "Could not open network socket", errorLength);
 	return (NULL);
     }
@@ -392,7 +392,7 @@ IceOpenConnection (
 			iceConn->connection_string;
 		    _IceConnectionCount++;
 
-		    free ((char *) iceConn->connect_to_you);
+		    free (iceConn->connect_to_you);
 		    iceConn->connect_to_you = NULL;
 
 		    iceConn->connection_status = IceConnectAccepted;

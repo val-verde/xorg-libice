@@ -960,7 +960,7 @@ ProcessConnectionSetup (
 	    for (i = 0; i < hisAuthCount; i++)
 		free (hisAuthNames[i]);
 
-	    free ((char *) hisAuthNames);
+	    free (hisAuthNames);
 	}
 
 	IceDisposeCompleteMessage (iceConn, pStart);
@@ -1078,7 +1078,7 @@ ProcessConnectionSetup (
 	}
 
 	if (authData && authDataLen > 0)
-	    free ((char *) authData);
+	    free (authData);
 
 	if (errorString)
 	    free (errorString);
@@ -1098,7 +1098,7 @@ ProcessConnectionSetup (
 	for (i = 0; i < hisAuthCount; i++)
 	    free (hisAuthNames[i]);
 
-	free ((char *) hisAuthNames);
+	free (hisAuthNames);
     }
 
     IceDisposeCompleteMessage (iceConn, pStart);
@@ -1292,7 +1292,7 @@ ProcessAuthRequired (
     }
 
     if (replyData && replyDataLen > 0)
-	free ((char *) replyData);
+	free (replyData);
 
     IceDisposeCompleteMessage (iceConn, authData);
 
@@ -1377,7 +1377,7 @@ ProcessAuthReply (
 	    {
 		free (iceConn->connect_to_me->his_vendor);
 		free (iceConn->connect_to_me->his_release);
-		free ((char *) iceConn->connect_to_me);
+		free (iceConn->connect_to_me);
 		iceConn->connect_to_me = NULL;
 
 		iceConn->connection_status = IceConnectRejected;
@@ -1405,7 +1405,7 @@ ProcessAuthReply (
 	    iceConn->my_ice_version_index =
 		iceConn->connect_to_me->my_version_index;
 
-	    free ((char *) iceConn->connect_to_me);
+	    free (iceConn->connect_to_me);
 	    iceConn->connect_to_me = NULL;
 	}
     }
@@ -1571,7 +1571,7 @@ ProcessAuthReply (
 		free (iceConn->protosetup_to_me->his_vendor);
 	    if (iceConn->protosetup_to_me->his_release)
 		free (iceConn->protosetup_to_me->his_release);
-	    free ((char *) iceConn->protosetup_to_me);
+	    free (iceConn->protosetup_to_me);
 	    iceConn->protosetup_to_me = NULL;
 	}
     }
@@ -1585,7 +1585,7 @@ ProcessAuthReply (
     }
 
     if (authData && authDataLen > 0)
-	free ((char *) authData);
+	free (authData);
 
     if (errorString)
 	free (errorString);
@@ -1719,7 +1719,7 @@ ProcessAuthNextPhase (
     }
 
     if (replyData && replyDataLen > 0)
-	free ((char *) replyData);
+	free (replyData);
 
     IceDisposeCompleteMessage (iceConn, authData);
 
@@ -2005,7 +2005,7 @@ ProcessProtocolSetup (
 	    for (i = 0; i < hisAuthCount; i++)
 		free (hisAuthNames[i]);
 
-	    free ((char *) hisAuthNames);
+	    free (hisAuthNames);
 	}
 
 	IceDisposeCompleteMessage (iceConn, pStart);
@@ -2117,7 +2117,7 @@ ProcessProtocolSetup (
 	}
 
 	if (authData && authDataLen > 0)
-	    free ((char *) authData);
+	    free (authData);
 
 	if (errorString)
 	    free (errorString);
@@ -2219,7 +2219,7 @@ ProcessProtocolSetup (
 	for (i = 0; i < hisAuthCount; i++)
 	    free (hisAuthNames[i]);
 
-	free ((char *) hisAuthNames);
+	free (hisAuthNames);
     }
 
     IceDisposeCompleteMessage (iceConn, pStart);
@@ -2364,7 +2364,7 @@ ProcessPingReply (
 	(*iceConn->ping_waits->ping_reply_proc) (iceConn,
 	    iceConn->ping_waits->client_data);
 
-	free ((char *) iceConn->ping_waits);
+	free (iceConn->ping_waits);
 	iceConn->ping_waits = next;
     }
     else

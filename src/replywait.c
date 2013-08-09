@@ -149,7 +149,7 @@ _IceCheckReplyReady (
 	else
 	    prev->next = savedReplyWait->next;
 
-	free ((char *) savedReplyWait);
+	free (savedReplyWait);
     }
 
     return (ready);

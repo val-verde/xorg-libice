@@ -237,8 +237,8 @@ IceProtocolSetup (
 	    }
 
 	    if (iceConn->protosetup_to_you->my_auth_indices)
-		free ((char *) iceConn->protosetup_to_you->my_auth_indices);
-	    free ((char *) iceConn->protosetup_to_you);
+		free (iceConn->protosetup_to_you->my_auth_indices);
+	    free (iceConn->protosetup_to_you);
 	    iceConn->protosetup_to_you = NULL;
 	}
     }

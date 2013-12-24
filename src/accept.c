@@ -110,6 +110,7 @@ IceAcceptConnection (
     else
     {
 	_IceTransClose (newconn);
+	free (iceConn->connection_string);
 	free (iceConn);
 	*statusRet = IceAcceptBadMalloc;
 	return (NULL);
@@ -122,6 +123,7 @@ IceAcceptConnection (
     else
     {
 	_IceTransClose (newconn);
+	free (iceConn->connection_string);
 	free (iceConn->inbuf);
 	free (iceConn);
 	*statusRet = IceAcceptBadMalloc;

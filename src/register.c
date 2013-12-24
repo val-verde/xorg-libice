@@ -78,9 +78,7 @@ IceRegisterForProtocolSetup (
     }
     else
     {
-	char *name;
-
-	_IceProtocols[_IceLastMajorOpcode].protocol_name = name =
+	_IceProtocols[_IceLastMajorOpcode].protocol_name =
 	    strdup(protocolName);
 
 	p = _IceProtocols[_IceLastMajorOpcode].orig_client =
@@ -176,9 +174,7 @@ IceRegisterForProtocolReply (
     }
     else
     {
-	char *name;
-
-	_IceProtocols[_IceLastMajorOpcode].protocol_name = name =
+	_IceProtocols[_IceLastMajorOpcode].protocol_name =
 	    strdup(protocolName);
 
 	_IceProtocols[_IceLastMajorOpcode].orig_client = NULL;

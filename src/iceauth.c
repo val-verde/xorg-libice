@@ -40,6 +40,8 @@ Author: Ralph Mor, X Consortium
 #include <bsd/stdlib.h>	/* for arc4random_buf() */
 #endif
 
+#include <unistd.h>
+
 static int was_called_state;
 
 /*

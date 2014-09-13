@@ -32,9 +32,8 @@ Author: Ralph Mor, X Consortium
 #include <X11/ICE/ICElib.h>
 #include "ICElibint.h"
 #include <stdio.h>
-
+#include <unistd.h>
 #include <errno.h>
-
 
 void
 _IceErrorBadMinor (

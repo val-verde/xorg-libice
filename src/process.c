@@ -856,7 +856,8 @@ ProcessConnectionSetup (
 )
 {
     iceConnectionSetupMsg *message;
-    int  myVersionCount, hisVersionCount;
+    const int myVersionCount = _IceVersionCount;
+    int  hisVersionCount;
     int	 myVersionIndex, hisVersionIndex;
     int  hisMajorVersion, hisMinorVersion;
     int	 myAuthCount, hisAuthCount;
@@ -926,7 +927,6 @@ ProcessConnectionSetup (
     }
 
     hisVersionCount = message->versionCount;
-    myVersionCount = _IceVersionCount;
 
     hisVersionIndex = myVersionIndex = found = 0;
 
@@ -2551,7 +2551,7 @@ _IceProcessCoreMessage (
 	*replyReadyRet = replyReady;
 }
 
-int		_IceVersionCount = 1;
-_IceVersion	_IceVersions[] = {
-		    {IceProtoMajor, IceProtoMinor, _IceProcessCoreMessage}};
+const int		_IceVersionCount = 1;
+const _IceVersion	_IceVersions[] = {
+			    {IceProtoMajor, IceProtoMinor, _IceProcessCoreMessage}};
 

@@ -37,8 +37,6 @@ Author: Ralph Mor, X Consortium
 static XtransConnInfo ConnectToPeer(char *networkIdsList,
 				    char **actualConnectionRet);
 
-#define Strstr strstr
-
 IceConn
 IceOpenConnection (
 	char 	   *networkIdsList,
@@ -93,7 +91,7 @@ IceOpenConnection (
     for (i = 0; i < _IceConnectionCount; i++)
     {
 	char *strptr;
-	if ((strptr = (char *) Strstr (
+	if ((strptr = (char *) strstr (
 	    networkIdsList, _IceConnectionStrings[i])) != NULL)
 	{
 	    char ch = *(strptr + strlen (_IceConnectionStrings[i]));

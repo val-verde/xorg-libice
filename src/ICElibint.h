@@ -244,7 +244,7 @@ typedef struct {
 }
 
 
-
+
 /*
  * Byte swapping
  */
@@ -259,7 +259,7 @@ typedef struct {
 #define lswaps(_val) ((((_val) & 0xff) << 8) | (((_val) >> 8) & 0xff))
 
 
-
+
 /*
  * ICE replies (not processed via callbacks because we block)
  */

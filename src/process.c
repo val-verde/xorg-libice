@@ -111,7 +111,7 @@ asprintf(char ** ret, const char *format, ...)
 }
 #endif
 
-
+
 /*
  * IceProcessMessages:
  *
@@ -430,7 +430,7 @@ IceProcessMessages (
 }
 
 
-
+
 static void
 AuthRequired (
 	IceConn		iceConn,
@@ -457,7 +457,7 @@ AuthRequired (
 }
 
 
-
+
 static void
 AuthReply (
 	IceConn		iceConn,
@@ -482,7 +482,7 @@ AuthReply (
 }
 
 
-
+
 static void
 AuthNextPhase (
 	IceConn		iceConn,
@@ -507,7 +507,7 @@ AuthNextPhase (
 }
 
 
-
+
 static void
 AcceptConnection (
 	IceConn iceConn,
@@ -535,7 +535,7 @@ AcceptConnection (
 }
 
 
-
+
 static void
 AcceptProtocol (
 	IceConn iceConn,
@@ -575,7 +575,7 @@ AcceptProtocol (
 }
 
 
-
+
 static void
 PingReply (
 	IceConn iceConn
@@ -586,7 +586,7 @@ PingReply (
 }
 
 
-
+
 static Bool
 ProcessError (
 	IceConn		 iceConn,
@@ -847,7 +847,7 @@ ProcessError (
 }
 
 
-
+
 static int
 ProcessConnectionSetup (
 	IceConn		iceConn,
@@ -1106,7 +1106,7 @@ ProcessConnectionSetup (
 }
 
 
-
+
 static Bool
 ProcessAuthRequired (
 	IceConn			iceConn,
@@ -1300,7 +1300,7 @@ ProcessAuthRequired (
 }
 
 
-
+
 static int
 ProcessAuthReply (
 	IceConn		iceConn,
@@ -1595,7 +1595,7 @@ ProcessAuthReply (
 }
 
 
-
+
 static Bool
 ProcessAuthNextPhase (
 	IceConn		  	iceConn,
@@ -1727,7 +1727,7 @@ ProcessAuthNextPhase (
 }
 
 
-
+
 static Bool
 ProcessConnectionReply (
 	IceConn			iceConn,
@@ -1829,7 +1829,7 @@ ProcessConnectionReply (
 }
 
 
-
+
 static int
 ProcessProtocolSetup (
 	IceConn		iceConn,
@@ -2226,7 +2226,7 @@ ProcessProtocolSetup (
 }
 
 
-
+
 static Bool
 ProcessProtocolReply (
 	IceConn		  	iceConn,
@@ -2330,7 +2330,7 @@ ProcessProtocolReply (
 }
 
 
-
+
 static int
 ProcessPing (
 	IceConn 	iceConn,
@@ -2346,7 +2346,7 @@ ProcessPing (
 }
 
 
-
+
 static int
 ProcessPingReply (
 	IceConn 	iceConn,
@@ -2375,7 +2375,7 @@ ProcessPingReply (
 }
 
 
-
+
 static int
 ProcessWantToClose (
 	IceConn 	iceConn,
@@ -2434,7 +2434,7 @@ ProcessWantToClose (
 }
 
 
-
+
 static int
 ProcessNoClose (
 	IceConn 	iceConn,
@@ -2462,7 +2462,7 @@ ProcessNoClose (
 }
 
 
-
+
 static void
 _IceProcessCoreMessage (
 	IceConn 	 iceConn,

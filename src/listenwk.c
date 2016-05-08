@@ -35,7 +35,7 @@ in this Software without prior written authorization from The Open Group.
 #include <X11/Xtrans/Xtrans.h>
 #include <stdio.h>
 
-
+
 Status
 IceListenForWellKnownConnections (
 	char		*port,

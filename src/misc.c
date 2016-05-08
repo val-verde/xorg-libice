@@ -41,7 +41,7 @@ Author: Ralph Mor, X Consortium
 #include <X11/Xw32defs.h>
 #endif
 
-
+
 /*
  * scratch buffer
  */
@@ -65,7 +65,7 @@ IceAllocScratch (
 }
 
 
-
+
 /*
  * Output/Input buffer functions
  */
@@ -102,7 +102,7 @@ IceGetInBufSize (
 }
 
 
-
+
 /*
  * informational functions
  */
@@ -202,7 +202,7 @@ IceSwapping (
 }
 
 
-
+
 /*
  * Read "n" bytes from a connection.
  *
@@ -302,7 +302,7 @@ _IceRead (
 }
 
 
-
+
 /*
  * If we read a message header with a bad major or minor opcode,
  * we need to advance to the end of the message.  This way, the next
@@ -327,7 +327,7 @@ _IceReadSkip (
 }
 
 
-
+
 /*
  * Write "n" bytes to a connection.
  */
@@ -407,7 +407,7 @@ _IceWrite (
 }
 
 
-
+
 void
 _IceAddOpcodeMapping (
 	IceConn	iceConn,
@@ -489,14 +489,14 @@ _IceAddOpcodeMapping (
 }
 
 
-
+
 char *
 IceGetPeerName (IceConn iceConn)
 {
     return (_IceTransGetPeerNetworkId (iceConn->trans_conn));
 }
 
-
+
 char *
 _IceGetPeerName (IceConn iceConn)
 {

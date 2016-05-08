@@ -56,7 +56,7 @@ static Status write_string (FILE *file, const char *string);
 static Status write_counted_string (FILE *file, unsigned short count, const char *string);
 
 
-
+
 /*
  * The following routines are for manipulating the .ICEauthority file
  * These are utility functions - they are not part of the standard
@@ -127,7 +127,7 @@ IceAuthFileName (void)
 }
 
 
-
+
 int
 IceLockAuthFile (
 	const char *file_name,
@@ -201,7 +201,7 @@ IceLockAuthFile (
 }
 
 
-
+
 void
 IceUnlockAuthFile (
 	const char	*file_name
@@ -224,7 +224,7 @@ IceUnlockAuthFile (
 }
 
 
-
+
 IceAuthFileEntry *
 IceReadAuthFileEntry (
 	FILE	*auth_file
@@ -275,7 +275,7 @@ IceReadAuthFileEntry (
 }
 
 
-
+
 void
 IceFreeAuthFileEntry (
 	IceAuthFileEntry	*auth
@@ -293,7 +293,7 @@ IceFreeAuthFileEntry (
 }
 
 
-
+
 Status
 IceWriteAuthFileEntry (
 	FILE			*auth_file,
@@ -321,7 +321,7 @@ IceWriteAuthFileEntry (
 }
 
 
-
+
 IceAuthFileEntry *
 IceGetAuthFileEntry (
 	const char	*protocol_name,
@@ -363,7 +363,7 @@ IceGetAuthFileEntry (
 }
 
 
-
+
 /*
  * local routines
  */

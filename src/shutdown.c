@@ -82,7 +82,7 @@ IceProtocolShutdown (
 }
 
 
-
+
 void
 IceSetShutdownNegotiation (
 	IceConn     	iceConn,
@@ -93,7 +93,7 @@ IceSetShutdownNegotiation (
 }
 
 
-
+
 Bool
 IceCheckShutdownNegotiation (
 	IceConn     iceConn
@@ -103,7 +103,7 @@ IceCheckShutdownNegotiation (
 }
 
 
-
+
 IceCloseStatus
 IceCloseConnection (
 	IceConn     iceConn
@@ -245,7 +245,7 @@ IceCloseConnection (
 }
 
 
-
+
 void
 _IceFreeConnection (
 	IceConn iceConn

@@ -104,7 +104,7 @@ arc4random_buf (
  * the SI.  It is not part of standard ICElib.
  */
 
-
+
 char *
 IceGenerateMagicCookie (
 	int len
@@ -122,7 +122,7 @@ IceGenerateMagicCookie (
 }
 
 
-
+
 IcePoAuthStatus
 _IcePoMagicCookie1Proc (
 	IceConn		iceConn,

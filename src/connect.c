@@ -421,7 +421,7 @@ IceOpenConnection (
 }
 
 
-
+
 IcePointer
 IceGetConnectionContext (
 	IceConn    iceConn
@@ -431,7 +431,7 @@ IceGetConnectionContext (
 }
 
 
-
+
 /* ------------------------------------------------------------------------- *
  *                            local routines                                 *
  * ------------------------------------------------------------------------- */

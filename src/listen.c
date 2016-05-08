@@ -34,7 +34,7 @@ Author: Ralph Mor,  X Consortium
 #include <X11/Xtrans/Xtrans.h>
 #include <stdio.h>
 
-
+
 Status
 IceListenForConnections (
 	int		*countRet,
@@ -156,7 +156,7 @@ IceListenForConnections (
 }
 
 
-
+
 int
 IceGetListenConnectionNumber (
 	IceListenObj listenObj
@@ -166,7 +166,7 @@ IceGetListenConnectionNumber (
 }
 
 
-
+
 char *
 IceGetListenConnectionString (
 	IceListenObj listenObj
@@ -176,7 +176,7 @@ IceGetListenConnectionString (
 }
 
 
-
+
 char *
 IceComposeNetworkIdList (
 	int		count,
@@ -233,7 +233,7 @@ IceComposeNetworkIdList (
 }
 
 
-
+
 void
 IceFreeListenObjs (
 	int	     count,
@@ -253,7 +253,7 @@ IceFreeListenObjs (
 }
 
 
-
+
 /*
  * Allow host based authentication for the ICE Connection Setup.
  * Do not confuse with the host based authentication callbacks that

@@ -34,7 +34,6 @@ Author: Ralph Mor, X Consortium
 #include <X11/ICE/ICEutil.h>
 
 #include <time.h>
-#define Time_t time_t
 
 #ifdef HAVE_LIBBSD
 #include <bsd/stdlib.h>	/* for arc4random_buf() */

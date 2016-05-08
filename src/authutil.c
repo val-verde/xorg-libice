@@ -38,7 +38,6 @@ Author: Ralph Mor, X Consortium
 #include <limits.h>
 
 #include <time.h>
-#define Time_t time_t
 #ifndef X_NOT_POSIX
 #include <unistd.h>
 #else
@@ -139,7 +138,7 @@ IceLockAuthFile (
 {
     char	creat_name[1025], link_name[1025];
     struct stat	statb;
-    Time_t	now;
+    time_t	now;
     int		creat_fd = -1;
 
     if ((int) strlen (file_name) > 1022)
@@ -150,7 +149,7 @@ IceLockAuthFile (
 
     if (stat (creat_name, &statb) != -1)
     {
-	now = time ((Time_t *) 0);
+	now = time ((time_t *) 0);
 
 	/*
 	 * NFS may cause ctime to be before now, special

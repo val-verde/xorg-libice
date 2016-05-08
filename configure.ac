@@ -35,6 +35,8 @@ PKG_CHECK_MODULES(ICE, xproto xtrans)
 # Transport selection macro from xtrans.m4
 XTRANS_CONNECTION_FLAGS
 AC_DEFINE(ICE_t, 1, [Xtrans transport type])
+AC_DEFINE(TRANS_CLIENT, 1, [Xtrans transport client code])
+AC_DEFINE(TRANS_SERVER, 1, [Xtrans transport server code])
 
 # Checks for library functions.
 AC_CHECK_LIB([bsd], [arc4random_buf])

@@ -66,7 +66,7 @@ static Status write_counted_string (FILE *file, unsigned short count, const char
 char *
 IceAuthFileName (void)
 {
-    static char slashDotICEauthority[] = "/.ICEauthority";
+    const char  *ICEauthority_name = ".ICEauthority";
     char    	*name;
     static char	*buf;
     static size_t bsize;
@@ -81,7 +81,12 @@ IceAuthFileName (void)
     if ((name = getenv ("ICEAUTHORITY")))
 	return (name);
 
-    name = getenv ("HOME");
+    /* If it's in the XDG_RUNTIME_DIR, don't use a dotfile */
+    if ((name = getenv ("XDG_RUNTIME_DIR")))
+	ICEauthority_name++;
+
+    if (!name || !name[0])
+	name = getenv ("HOME");
 
     if (!name || !name[0])
     {
@@ -106,7 +111,11 @@ IceAuthFileName (void)
 	return (NULL);
     }
 
-    size = strlen (name) + strlen (&slashDotICEauthority[1]) + 2;
+    /* Special case for "/".  We will add our own '/' later. */
+    if (name[1] == '\0')
+	name++;
+
+    size = strlen (name) + 1 + strlen (ICEauthority_name) + 1;
 
     if (size > bsize)
     {
@@ -120,8 +129,7 @@ IceAuthFileName (void)
 	bsize = size;
     }
 
-    snprintf (buf, bsize, "%s%s", name,
-              slashDotICEauthority + (name[1] == '\0' ? 1 : 0));
+    snprintf (buf, bsize, "%s/%s", name, ICEauthority_name);
 
     return (buf);
 }

@@ -83,7 +83,7 @@ IceAuthFileName (void)
 
     name = getenv ("HOME");
 
-    if (!name)
+    if (!name || !name[0])
     {
 #ifdef WIN32
     register char *ptr1;
@@ -101,7 +101,7 @@ IceAuthFileName (void)
 	snprintf (dir, sizeof(dir), "%s%s", ptr1, (ptr2) ? ptr2 : "");
 	name = dir;
     }
-    if (!name)
+    if (!name || !name[0])
 #endif
 	return (NULL);
     }

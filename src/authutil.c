@@ -114,8 +114,10 @@ IceAuthFileName (void)
 	if (buf)
 	    free (buf);
 	buf = malloc (size);
-	if (!buf)
+	if (!buf) {
+	    bsize = 0;
 	    return (NULL);
+	}
 	bsize = size;
     }
 

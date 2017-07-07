@@ -704,6 +704,11 @@ ProcessError (
 		invokeHandler = 1;
 	    }
 
+			if (!errorStr)
+			{
+				errorStr = strdup("");
+			}
+
 	    errorReply->type = ICE_CONNECTION_ERROR;
 	    errorReply->error_message = errorStr;
 	}
@@ -793,6 +798,11 @@ ProcessError (
 	    default:
 		invokeHandler = 1;
 	    }
+
+			if (!errorStr)
+			{
+				errorStr = strdup("");
+			}
 
 	    errorReply->type = ICE_PROTOCOL_ERROR;
 	    errorReply->error_message = errorStr;
@@ -1270,7 +1280,7 @@ ProcessAuthRequired (
 	}
 
 	if (asprintf (&returnErrorString, "%s%s", prefix, errorString) == -1)
-	    returnErrorString = NULL;
+	    returnErrorString = strdup("");
 	free (errorString);
 
 	if (iceConn->connect_to_you)
@@ -1697,7 +1707,7 @@ ProcessAuthNextPhase (
 	}
 
 	if (asprintf (&returnErrorString, "%s%s", prefix, errorString) == -1)
-	    returnErrorString = NULL;
+	    returnErrorString = strdup("");
 	free (errorString);
 
 	if (iceConn->connect_to_you)

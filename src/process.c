@@ -1797,7 +1797,7 @@ ProcessConnectionReply (
 
 	    errorReply->type = ICE_CONNECTION_ERROR;
 	    errorReply->error_message =
-		"Received bad version index in Connection Reply";
+		strdup("Received bad version index in Connection Reply");
 	}
 	else
 	{
@@ -2300,7 +2300,7 @@ ProcessProtocolReply (
 
 	    errorReply->type = ICE_PROTOCOL_ERROR;
 	    errorReply->error_message =
-		"Received bad version index in Protocol Reply";
+		strdup("Received bad version index in Protocol Reply");
 	}
 	else
 	{

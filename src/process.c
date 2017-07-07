@@ -715,7 +715,7 @@ ProcessError (
 	{
 	    _IceProtocolError *errorReply =
 	        &(((_IceReply *) (replyWait->reply))->protocol_error);
-	    char *errorStr = "";
+	    char *errorStr = NULL;
 	    const char *prefix;
 	    char *temp;
 

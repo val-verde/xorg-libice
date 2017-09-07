@@ -85,9 +85,9 @@ arc4random_buf (
 	int len
 )
 {
+#if HAVE_GETENTROPY
     int	    ret;
 
-#if HAVE_GETENTROPY
     /* weak emulation of arc4random through the entropy libc */
     ret = getentropy (auth, len);
     if (ret == 0)

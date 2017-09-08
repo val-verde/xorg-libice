@@ -282,39 +282,17 @@ _IceFreeConnection (
     if (iceConn->trans_conn)
 	_IceTransClose (iceConn->trans_conn);
 
-    if (iceConn->connection_string)
-	free (iceConn->connection_string);
-
-    if (iceConn->vendor)
-	free (iceConn->vendor);
-
-    if (iceConn->release)
-	free (iceConn->release);
-
-    if (iceConn->inbuf)
-	free (iceConn->inbuf);
-
-    if (iceConn->outbuf)
-	free (iceConn->outbuf);
-
-    if (iceConn->scratch)
-	free (iceConn->scratch);
-
-    if (iceConn->process_msg_info)
-	free (iceConn->process_msg_info);
-
-    if (iceConn->connect_to_you)
-	free (iceConn->connect_to_you);
-
-    if (iceConn->protosetup_to_you)
-	free (iceConn->protosetup_to_you);
-
-    if (iceConn->connect_to_me)
-	free (iceConn->connect_to_me);
-
-    if (iceConn->protosetup_to_me)
-	free (iceConn->protosetup_to_me);
-
+    free (iceConn->connection_string);
+    free (iceConn->vendor);
+    free (iceConn->release);
+    free (iceConn->inbuf);
+    free (iceConn->outbuf);
+    free (iceConn->scratch);
+    free (iceConn->process_msg_info);
+    free (iceConn->connect_to_you);
+    free (iceConn->protosetup_to_you);
+    free (iceConn->connect_to_me);
+    free (iceConn->protosetup_to_me);
     free (iceConn);
 }
 

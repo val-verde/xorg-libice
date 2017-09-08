@@ -54,8 +54,7 @@ IceAllocScratch (
 {
     if (!iceConn->scratch || size > iceConn->scratch_size)
     {
-	if (iceConn->scratch)
-	    free (iceConn->scratch);
+	free (iceConn->scratch);
 
 	iceConn->scratch = malloc (size);
 	iceConn->scratch_size = size;

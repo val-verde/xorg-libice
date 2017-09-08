@@ -1036,8 +1036,7 @@ ProcessConnectionSetup (
 		iceConn->connection_status = IceConnectRejected;
 	    }
 
-	    if (hostname)
-		free (hostname);
+	    free (hostname);
 	}
 
 	if (iceConn->connection_status == IceConnectRejected)
@@ -1090,8 +1089,7 @@ ProcessConnectionSetup (
 	if (authData && authDataLen > 0)
 	    free (authData);
 
-	if (errorString)
-	    free (errorString);
+	free (errorString);
     }
 
     if (accept_setup_now)
@@ -1379,8 +1377,7 @@ ProcessAuthReply (
 		    status = IcePaAuthAccepted;
 		}
 
-		if (hostname)
-		    free (hostname);
+		free (hostname);
 	    }
 
 	    if (status != IcePaAuthAccepted)
@@ -1454,8 +1451,7 @@ ProcessAuthReply (
 		    status = IcePaAuthAccepted;
 		}
 
-		if (hostname)
-		    free (hostname);
+		free (hostname);
 	    }
 
 	    if (status == IcePaAuthRejected)
@@ -1569,18 +1565,15 @@ ProcessAuthReply (
 		_IceErrorSetupFailed (iceConn, ICE_ProtocolSetup,
 		    failureReason);
 
-		if (failureReason)
-		    free (failureReason);
+		free (failureReason);
 	    }
 	}
 
 
 	if (free_setup_info)
 	{
-	    if (iceConn->protosetup_to_me->his_vendor)
-		free (iceConn->protosetup_to_me->his_vendor);
-	    if (iceConn->protosetup_to_me->his_release)
-		free (iceConn->protosetup_to_me->his_release);
+	    free (iceConn->protosetup_to_me->his_vendor);
+	    free (iceConn->protosetup_to_me->his_release);
 	    free (iceConn->protosetup_to_me);
 	    iceConn->protosetup_to_me = NULL;
 	}
@@ -1597,8 +1590,8 @@ ProcessAuthReply (
     if (authData && authDataLen > 0)
 	free (authData);
 
-    if (errorString)
-	free (errorString);
+
+    free (errorString);
 
     IceDisposeCompleteMessage (iceConn, replyData);
     return (0);
@@ -2081,8 +2074,7 @@ ProcessProtocolSetup (
 	            ICE_ProtocolSetup, "None of the authentication protocols specified are supported and host-based authentication failed");
 	    }
 
-	    if (hostname)
-		free (hostname);
+	    free (hostname);
 	}
     }
     else
@@ -2128,8 +2120,8 @@ ProcessProtocolSetup (
 	if (authData && authDataLen > 0)
 	    free (authData);
 
-	if (errorString)
-	    free (errorString);
+
+	free (errorString);
     }
 
     if (accept_setup_now)
@@ -2212,16 +2204,13 @@ ProcessProtocolSetup (
 
 	    _IceErrorSetupFailed (iceConn, ICE_ProtocolSetup, failureReason);
 
-	    if (failureReason)
-		free (failureReason);
+	    free (failureReason);
 	}
     }
 
-    if (vendor)
-	free (vendor);
 
-    if (release)
-	free (release);
+    free (vendor);
+    free (release);
 
     if (hisAuthCount > 0)
     {

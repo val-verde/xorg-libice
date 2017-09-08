@@ -110,8 +110,8 @@ IceAuthFileName (void)
 
     if (size > bsize)
     {
-	if (buf)
-	    free (buf);
+
+	free (buf);
 	buf = malloc (size);
 	if (!buf) {
 	    bsize = 0;
@@ -265,11 +265,11 @@ IceReadAuthFileEntry (
 
  bad:
 
-    if (local.protocol_name) free (local.protocol_name);
-    if (local.protocol_data) free (local.protocol_data);
-    if (local.network_id) free (local.network_id);
-    if (local.auth_name) free (local.auth_name);
-    if (local.auth_data) free (local.auth_data);
+    free (local.protocol_name);
+    free (local.protocol_data);
+    free (local.network_id);
+    free (local.auth_name);
+    free (local.auth_data);
 
     return (NULL);
 }
@@ -283,11 +283,11 @@ IceFreeAuthFileEntry (
 {
     if (auth)
     {
-	if (auth->protocol_name) free (auth->protocol_name);
-	if (auth->protocol_data) free (auth->protocol_data);
-	if (auth->network_id) free (auth->network_id);
-	if (auth->auth_name) free (auth->auth_name);
-	if (auth->auth_data) free (auth->auth_data);
+	free (auth->protocol_name);
+	free (auth->protocol_data);
+	free (auth->network_id);
+	free (auth->auth_name);
+	free (auth->auth_data);
 	free (auth);
     }
 }

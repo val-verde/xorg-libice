@@ -58,8 +58,11 @@ IceListenForWellKnownConnections (
 	*listenObjsRet = NULL;
 	*countRet = 0;
 
-        strncpy (errorStringRet,
-	    "Cannot establish any listening sockets", errorLength);
+	if (errorStringRet && errorLength > 0) {
+            strncpy (errorStringRet,
+		"Cannot establish any listening sockets", errorLength);
+	    errorStringRet[errorLength - 1] = '\0';
+	}
 
 	return (0);
     }
@@ -91,8 +94,11 @@ IceListenForWellKnownConnections (
     {
 	*listenObjsRet = NULL;
 
-        strncpy (errorStringRet,
-	    "Cannot establish any listening sockets", errorLength);
+	if (errorStringRet && errorLength > 0) {
+            strncpy (errorStringRet,
+		"Cannot establish any listening sockets", errorLength);
+	    errorStringRet[errorLength - 1] = '\0';
+	}
 
 	status = 0;
     }
@@ -102,7 +108,10 @@ IceListenForWellKnownConnections (
 
 	if (*listenObjsRet == NULL)
 	{
-	    strncpy (errorStringRet, "Malloc failed", errorLength);
+	    if (errorStringRet && errorLength > 0) {
+		strncpy (errorStringRet, "Malloc failed", errorLength);
+		errorStringRet[errorLength - 1] = '\0';
+	    }
 
 	    status = 0;
 	}
@@ -114,7 +123,10 @@ IceListenForWellKnownConnections (
 
 		if ((*listenObjsRet)[i] == NULL)
 		{
-		    strncpy (errorStringRet, "Malloc failed", errorLength);
+		    if (errorStringRet && errorLength > 0) {
+		        strncpy (errorStringRet, "Malloc failed", errorLength);
+			errorStringRet[errorLength - 1] = '\0';
+		    }
 
 		    for (j = 0; j < i; j++)
 			free ((*listenObjsRet)[j]);

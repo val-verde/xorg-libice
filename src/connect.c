@@ -236,6 +236,15 @@ IceOpenConnection (
     iceConn->ping_waits = NULL;
 
     iceConn->connect_to_you = malloc (sizeof (_IceConnectToYouInfo));
+    if (iceConn->connect_to_you == NULL)
+    {
+	_IceFreeConnection (iceConn);
+	if (errorStringRet && errorLength > 0) {
+	    strncpy (errorStringRet, "Can't malloc", errorLength);
+	    errorStringRet[errorLength - 1] = '\0';
+	}
+	return (NULL);
+    }
     iceConn->connect_to_you->auth_active = 0;
 
     /*

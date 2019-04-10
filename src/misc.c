@@ -241,7 +241,6 @@ _IceRead (
 		 */
 
 		_IceConnectionClosed (iceConn);	    /* invoke watch procs */
-		_IceFreeConnection (iceConn);
 
 		return (0);
 	    }

@@ -64,6 +64,7 @@ IceListenForWellKnownConnections (
 	    errorStringRet[errorLength - 1] = '\0';
 	}
 
+	free (transConns);
 	return (0);
     }
 

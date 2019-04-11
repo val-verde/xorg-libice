@@ -930,7 +930,8 @@ ProcessConnectionSetup (
     EXTRACT_STRING (pData, swap, vendor);
     EXTRACT_STRING (pData, swap, release);
 
-    if ((hisAuthCount = message->authCount) > 0)
+    hisAuthCount = message->authCount;
+    if (hisAuthCount > 0)
     {
 	hisAuthNames = malloc (hisAuthCount * sizeof (char *));
 	EXTRACT_LISTOF_STRING (pData, swap, hisAuthCount, hisAuthNames);
@@ -1968,7 +1969,8 @@ ProcessProtocolSetup (
     EXTRACT_STRING (pData, swap, vendor);
     EXTRACT_STRING (pData, swap, release);
 
-    if ((hisAuthCount = message->authCount) > 0)
+    hisAuthCount = message->authCount;
+    if (hisAuthCount > 0)
     {
 	hisAuthNames = malloc (hisAuthCount * sizeof (char *));
 	EXTRACT_LISTOF_STRING (pData, swap, hisAuthCount, hisAuthNames);

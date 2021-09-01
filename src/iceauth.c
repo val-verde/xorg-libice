@@ -65,7 +65,6 @@ emulate_getrandom_buf (
     }
 #else /* ITIMER_REAL */
     {
-	long    time ();
 	ldata[0] = time ((long *) 0);
 	ldata[1] = getpid ();
     }
